@@ -1,0 +1,9779 @@
+{
+  "enemy.agwanda": [
+    {
+      "hash": -5332916927639323879,
+      "name": "enemy.agwanda",
+      "mainLocation": {
+        "cell": "gl5",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl5",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s516",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s525",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.agwanda.projectile": [
+    {
+      "hash": 3428354750116593312,
+      "name": "enemy.agwanda.projectile",
+      "mainLocation": {
+        "cell": "gl5",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl5",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s525",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.alligatorMan": [
+    {
+      "hash": 2184968896946742541,
+      "name": "enemy.alligatorMan",
+      "mainLocation": {
+        "cell": "r20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "u14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 3975308304263729297,
+      "name": "enemy.alligatorMan",
+      "mainLocation": {
+        "cell": "s16",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s16",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "t16",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -4917121518571125732,
+      "name": "enemy.alligatorMan",
+      "mainLocation": {
+        "cell": "v18",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v18",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.alligatorMan.projectile": [
+    {
+      "hash": 438790567090103495,
+      "name": "enemy.alligatorMan.projectile",
+      "mainLocation": {
+        "cell": "s16",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s16",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "t16",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.archer": [
+    {
+      "hash": -3447354490129610069,
+      "name": "enemy.archer",
+      "mainLocation": {
+        "cell": "s722",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s722",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.archer.projectile": [
+    {
+      "hash": 4151766792081683870,
+      "name": "enemy.archer.projectile",
+      "mainLocation": {
+        "cell": "s722",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s722",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.aviana": [
+    {
+      "hash": 338297926090318025,
+      "name": "enemy.aviana",
+      "mainLocation": {
+        "cell": "gl3",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl3",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s321",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.aviana.projectile": [
+    {
+      "hash": -4261018577752790225,
+      "name": "enemy.aviana.projectile",
+      "mainLocation": {
+        "cell": "gl3",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl3",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 9095493322811045128,
+      "name": "enemy.aviana.projectile",
+      "mainLocation": {
+        "cell": "s321",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s321",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.axeMan": [
+    {
+      "hash": -5875466130905322488,
+      "name": "enemy.axeMan",
+      "mainLocation": {
+        "cell": "x14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "x14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.bagoBago": [
+    {
+      "hash": 8509734868512484837,
+      "name": "enemy.bagoBago",
+      "mainLocation": {
+        "cell": "c8",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "c8",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -2163224053068746674,
+      "name": "enemy.bagoBago",
+      "mainLocation": {
+        "cell": "p13",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p13",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 6180068467551259076,
+      "name": "enemy.bagoBago",
+      "mainLocation": {
+        "cell": "o14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "o14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q14",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.bagoBago.projectile": [
+    {
+      "hash": 4944721547583477485,
+      "name": "enemy.bagoBago.projectile",
+      "mainLocation": {
+        "cell": "c8",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "c8",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": -3891619629633966183,
+      "name": "enemy.bagoBago.projectile",
+      "mainLocation": {
+        "cell": "o14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "o14",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "q14",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.blob": [
+    {
+      "hash": 3456909495822947753,
+      "name": "enemy.blob",
+      "mainLocation": {
+        "cell": "r17",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r17",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "t15",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -5417454404934051301,
+      "name": "enemy.blob",
+      "mainLocation": {
+        "cell": "t14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "t14",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "u15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.bolla": [
+    {
+      "hash": -1642979734208512452,
+      "name": "enemy.bolla",
+      "mainLocation": {
+        "cell": "s720",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s720",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.bolla.projectile": [
+    {
+      "hash": 1917839305071772436,
+      "name": "enemy.bolla.projectile",
+      "mainLocation": {
+        "cell": "s720",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s720",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.cactus": [
+    {
+      "hash": -5512386929345909717,
+      "name": "enemy.cactus",
+      "mainLocation": {
+        "cell": "v7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x8",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.cactus.projectile": [
+    {
+      "hash": -6005402011789620654,
+      "name": "enemy.cactus.projectile",
+      "mainLocation": {
+        "cell": "v7",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v7",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "w9",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "x8",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.crockarock": [
+    {
+      "hash": -7718174170041105196,
+      "name": "enemy.crockarock",
+      "mainLocation": {
+        "cell": "a7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "a7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "a8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "c7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "c8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "d7",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.crockarock.projectile": [
+    {
+      "hash": -6666878651010654846,
+      "name": "enemy.crockarock.projectile",
+      "mainLocation": {
+        "cell": "a7",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "a7",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "a8",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "c7",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "c8",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "d7",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s707",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.crystalShard": [
+    {
+      "hash": -1116897608456758974,
+      "name": "enemy.crystalShard",
+      "mainLocation": {
+        "cell": "s305",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s305",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s306",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -2387363862290798981,
+      "name": "enemy.crystalShard",
+      "mainLocation": {
+        "cell": "s319",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s319",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "enemy.deeler": [
+    {
+      "hash": 7964219810366474007,
+      "name": "enemy.deeler",
+      "mainLocation": {
+        "cell": "b8",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "b8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "e9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i10",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 2035437827530679753,
+      "name": "enemy.deeler",
+      "mainLocation": {
+        "cell": "f7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g29",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g30",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g31",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n13",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 3679255551770164783,
+      "name": "enemy.deeler",
+      "mainLocation": {
+        "cell": "h10",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "m10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "m13",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o12",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.dragonfly": [
+    {
+      "hash": 2779295649911566827,
+      "name": "enemy.dragonfly",
+      "mainLocation": {
+        "cell": "gl4",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl4",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "gl4",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -5445625051415450844,
+      "name": "enemy.dragonfly",
+      "mainLocation": {
+        "cell": "s312",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s312",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s313",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s317",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.floorSpikes": [
+    {
+      "hash": 1923761120498708320,
+      "name": "enemy.floorSpikes",
+      "mainLocation": {
+        "cell": "l8",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s5",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l8",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s5",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 2831269562160095816,
+      "name": "enemy.floorSpikes",
+      "mainLocation": {
+        "cell": "q15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "q15",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s219",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s420",
+          "isOverworld": false,
+          "descIndex": 3
+        },
+        {
+          "cell": "s607",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s608",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s608",
+          "isOverworld": false,
+          "descIndex": 3
+        },
+        {
+          "cell": "s612",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s614",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s622",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s626",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.floorSpikes.blue": [
+    {
+      "hash": -726950903726586699,
+      "name": "enemy.floorSpikes.blue",
+      "mainLocation": {
+        "cell": "s316",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s316",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": -6759721282829334015,
+      "name": "enemy.floorSpikes.blue",
+      "mainLocation": {
+        "cell": "s318",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s318",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s508",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s513",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.floorSpikes.white": [
+    {
+      "hash": -3955550253645607687,
+      "name": "enemy.floorSpikes.white",
+      "mainLocation": {
+        "cell": "s406",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s406",
+          "isOverworld": false,
+          "descIndex": 3
+        },
+        {
+          "cell": "s421",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": -4920870675085848928,
+      "name": "enemy.floorSpikes.white",
+      "mainLocation": {
+        "cell": "s407",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s407",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s609",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s618",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s722",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s722",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "enemy.ganon": [
+    {
+      "hash": 1084950241517836542,
+      "name": "enemy.ganon",
+      "mainLocation": {
+        "cell": "gl8",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl8",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.ganon.projectile": [
+    {
+      "hash": 5387639864650436406,
+      "name": "enemy.ganon.projectile",
+      "mainLocation": {
+        "cell": "gl8",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl8",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.ganonFairy": [
+    {
+      "hash": 644870260667028154,
+      "name": "enemy.ganonFairy",
+      "mainLocation": {
+        "cell": "gl2",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl2",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "gl3",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "gl7",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "gl8",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -6697412619082021651,
+      "name": "enemy.ganonFairy",
+      "mainLocation": {
+        "cell": "gl1",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl1",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "gl1",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "gl5",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.giantSquid": [
+    {
+      "hash": -4505985382486134221,
+      "name": "enemy.giantSquid",
+      "mainLocation": {
+        "cell": "s20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s517",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s523",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 3307276176382174078,
+      "name": "enemy.giantSquid",
+      "mainLocation": {
+        "cell": "s515",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s515",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.gibdo": [
+    {
+      "hash": 1029471316295307386,
+      "name": "enemy.gibdo",
+      "mainLocation": {
+        "cell": "s415",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s415",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s406",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s407",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s411",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s412",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s415",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.golem.projectile": [
+    {
+      "hash": 8795548835271042011,
+      "name": "enemy.golem.projectile",
+      "mainLocation": {
+        "cell": "m25",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m25",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n18",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o23",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o9",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "p10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "p9",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "q17",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "z4",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "z6",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.goriya": [
+    {
+      "hash": 8370184562198890411,
+      "name": "enemy.goriya",
+      "mainLocation": {
+        "cell": "d24",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "d24",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "e21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "e23",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "e24",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i23",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l19",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m19",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w5",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y6",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z3",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s215",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s216",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -2243510494177805212,
+      "name": "enemy.goriya",
+      "mainLocation": {
+        "cell": "n17",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n17",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.goriya.projectile": [
+    {
+      "hash": -8541642505346634562,
+      "name": "enemy.goriya.projectile",
+      "mainLocation": {
+        "cell": "d24",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "d24",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "e21",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "e23",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "e24",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "i23",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 6983253737272360825,
+      "name": "enemy.goriya.projectile",
+      "mainLocation": {
+        "cell": "l19",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l19",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "m19",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o16",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "w5",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "y6",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "z3",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s215",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s216",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -5397884100897089618,
+      "name": "enemy.goriya.projectile",
+      "mainLocation": {
+        "cell": "n17",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n17",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.greenBird": [
+    {
+      "hash": -6670860943589195223,
+      "name": "enemy.greenBird",
+      "mainLocation": {
+        "cell": "k28",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o22",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o24",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p21",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.guard": [
+    {
+      "hash": -1309750096822485143,
+      "name": "npc.sirBasil",
+      "mainLocation": {
+        "cell": "p8",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z17",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.ironKnuckle": [
+    {
+      "hash": 7429775202016097465,
+      "name": "enemy.ironKnuckle",
+      "mainLocation": {
+        "cell": "s613",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s613",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s613",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s615",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s617",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s625",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 2310315025615527821,
+      "name": "enemy.ironKnuckle",
+      "mainLocation": {
+        "cell": "s626",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s626",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.jack": [
+    {
+      "hash": 1537233045699886627,
+      "name": "enemy.jack",
+      "mainLocation": {
+        "cell": "s406",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s406",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s407",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -2128839705613296516,
+      "name": "enemy.jack",
+      "mainLocation": {
+        "cell": "s421",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s421",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.jackaroo": [
+    {
+      "hash": 7127186988351545766,
+      "name": "enemy.jackaroo",
+      "mainLocation": {
+        "cell": "s202",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s202",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 606314523182202833,
+      "name": "enemy.jackaroo",
+      "mainLocation": {
+        "cell": "s223",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s223",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.kannis": [
+    {
+      "hash": -5089729150037875065,
+      "name": "enemy.kannis",
+      "mainLocation": {
+        "cell": "s716",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s716",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s717",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s718",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.keese": [
+    {
+      "hash": -2955868531585335313,
+      "name": "enemy.keese",
+      "mainLocation": {
+        "cell": "s105",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s105",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s106",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s110",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s111",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s115",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s315",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.kelpi": [
+    {
+      "hash": -5843006753946021764,
+      "name": "enemy.kelpi",
+      "mainLocation": {
+        "cell": "s508",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s508",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s513",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s521",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.knight.blue": [
+    {
+      "hash": 2115625649263196019,
+      "name": "enemy.knight.blue",
+      "mainLocation": {
+        "cell": "s620",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s620",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.knight.green": [
+    {
+      "hash": 8175579122999878424,
+      "name": "enemy.knight.green",
+      "mainLocation": {
+        "cell": "s621",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s621",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.knight.red": [
+    {
+      "hash": -5875846707264210455,
+      "name": "enemy.knight.red",
+      "mainLocation": {
+        "cell": "s612",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s612",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.lanmola": [
+    {
+      "hash": -655247343886431781,
+      "name": "enemy.lanmola",
+      "mainLocation": {
+        "cell": "aa16",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "aa16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q19",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v20",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.lavaLizard": [
+    {
+      "hash": -7461416983373174307,
+      "name": "enemy.lavaLizard",
+      "mainLocation": {
+        "cell": "s705",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s705",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s706",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.lavaLizard.projectile": [
+    {
+      "hash": -889424826027257099,
+      "name": "enemy.lavaLizard.projectile",
+      "mainLocation": {
+        "cell": "s705",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s705",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s706",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.leever": [
+    {
+      "hash": 2576819896338140024,
+      "name": "enemy.leever",
+      "mainLocation": {
+        "cell": "d8",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "d8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "e8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h27",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i26",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m16",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -6549667635469230322,
+      "name": "enemy.leever",
+      "mainLocation": {
+        "cell": "l18",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l18",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.llort": [
+    {
+      "hash": 7002689501879097053,
+      "name": "enemy.llort",
+      "mainLocation": {
+        "cell": "gl1",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl1",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "gl1",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s118",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s121",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.llort.projectile": [
+    {
+      "hash": -1771914129295448790,
+      "name": "enemy.llort.projectile",
+      "mainLocation": {
+        "cell": "gl1",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl1",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "gl1",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s121",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.loccasin": [
+    {
+      "hash": -2819004893642299862,
+      "name": "enemy.loccasin",
+      "mainLocation": {
+        "cell": "s304",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s304",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -6375663900620465801,
+      "name": "enemy.loccasin",
+      "mainLocation": {
+        "cell": "s709",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s709",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s711",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.lowder": [
+    {
+      "hash": 8018401569038172285,
+      "name": "enemy.lowder",
+      "mainLocation": {
+        "cell": "ac17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "ac17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x6",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y4",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z2",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 7297358865735456029,
+      "name": "enemy.lowder",
+      "mainLocation": {
+        "cell": "y6",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "y6",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.malmord": [
+    {
+      "hash": -5681795173529163524,
+      "name": "enemy.malmord",
+      "mainLocation": {
+        "cell": "gl4",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl4",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -4106423804161963086,
+      "name": "enemy.malmord",
+      "mainLocation": {
+        "cell": "s422",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s422",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.mimicMole": [
+    {
+      "hash": 1090516454819452510,
+      "name": "enemy.mimicMole",
+      "mainLocation": {
+        "cell": "l9",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m9",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.moblin": [
+    {
+      "hash": 4248493651917076400,
+      "name": "enemy.moblin",
+      "mainLocation": {
+        "cell": "f27",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f27",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g27",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h26",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k19",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t8",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.moby": [
+    {
+      "hash": -3839908315526092223,
+      "name": "enemy.moby",
+      "mainLocation": {
+        "cell": "g26",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "g26",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j26",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r6",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s8",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -8433057056367135743,
+      "name": "enemy.moby",
+      "mainLocation": {
+        "cell": "s7",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s7",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.octorok": [
+    {
+      "hash": -4862808243802778319,
+      "name": "enemy.octorok",
+      "mainLocation": {
+        "cell": "l11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l11",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m13",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "u15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s510",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s511",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.pasquinade": [
+    {
+      "hash": 7309552243853393947,
+      "name": "enemy.pasquinade",
+      "mainLocation": {
+        "cell": "gl2",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl2",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s224",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 3731489524815041240,
+      "name": "enemy.pasquinade",
+      "mainLocation": {
+        "cell": "s217",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s217",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.pasquinade.projectile": [
+    {
+      "hash": 7067421270828258363,
+      "name": "enemy.pasquinade.projectile",
+      "mainLocation": {
+        "cell": "gl2",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl2",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s224",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.patra": [
+    {
+      "hash": 2638022537229295162,
+      "name": "enemy.patra",
+      "mainLocation": {
+        "cell": "s214",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s214",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s212",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s213",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s214",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s308",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s309",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.peahat": [
+    {
+      "hash": 2291984833041581385,
+      "name": "enemy.peahat",
+      "mainLocation": {
+        "cell": "e22",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "e22",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "f20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "f9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "j23",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m11",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.peahat.projectile": [
+    {
+      "hash": 9060298521197346483,
+      "name": "enemy.peahat.projectile",
+      "mainLocation": {
+        "cell": "e22",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "e22",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "f20",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "f9",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "g21",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "i20",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "j23",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "k10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "m11",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n10",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.polsVoice": [
+    {
+      "hash": 5022521504737746022,
+      "name": "enemy.polsVoice",
+      "mainLocation": {
+        "cell": "s207",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s207",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s402",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s404",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.purpleBird": [
+    {
+      "hash": 5459195485575780348,
+      "name": "enemy.purpleBird",
+      "mainLocation": {
+        "cell": "w5",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "w5",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": 2630975320088514150,
+      "name": "enemy.purpleBird",
+      "mainLocation": {
+        "cell": "w7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "w7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x5",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y3",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 2403139466961057241,
+      "name": "enemy.purpleBird",
+      "mainLocation": {
+        "cell": "y6",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "y6",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "enemy.purpleFish": [
+    {
+      "hash": 1641134794140901397,
+      "name": "enemy.purpleFish",
+      "mainLocation": {
+        "cell": "s522",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s522",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.romraven": [
+    {
+      "hash": 7025998454065685000,
+      "name": "enemy.romraven",
+      "mainLocation": {
+        "cell": "s418",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s418",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s421",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 6370411328831748314,
+      "name": "enemy.romraven",
+      "mainLocation": {
+        "cell": "s710",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s710",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s715",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.rope": [
+    {
+      "hash": -8783721148863276038,
+      "name": "enemy.rope",
+      "mainLocation": {
+        "cell": "j15",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.sardak.blue": [
+    {
+      "hash": 8001974632989344635,
+      "name": "enemy.sardak.blue",
+      "mainLocation": {
+        "cell": "s112",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s112",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.sardak.red": [
+    {
+      "hash": 5665081002930555999,
+      "name": "enemy.sardak.red",
+      "mainLocation": {
+        "cell": "s107",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s107",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.sardak.yellow": [
+    {
+      "hash": -6692255839817678980,
+      "name": "enemy.sardak.yellow",
+      "mainLocation": {
+        "cell": "s120",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s120",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.sardak.yellow.projectile": [
+    {
+      "hash": 1333919597970098419,
+      "name": "enemy.sardak.yellow.projectile",
+      "mainLocation": {
+        "cell": "s120",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s120",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.seaMonster": [
+    {
+      "hash": 7008728987163395682,
+      "name": "enemy.seaMonster",
+      "mainLocation": {
+        "cell": "o28",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "o28",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.spearThrower": [
+    {
+      "hash": -6998752844275233113,
+      "name": "enemy.spearThrower",
+      "mainLocation": {
+        "cell": "s703",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s703",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s704",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.spearThrower.projectile": [
+    {
+      "hash": 24989547209826428,
+      "name": "enemy.spearThrower.projectile",
+      "mainLocation": {
+        "cell": "s703",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s703",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s704",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.spikedBlock": [
+    {
+      "hash": 5064675022503703114,
+      "name": "enemy.spikedBlock",
+      "mainLocation": {
+        "cell": "s403",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s403",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s408",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s414",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 866054700302240497,
+      "name": "enemy.spikedBlock",
+      "mainLocation": {
+        "cell": "s607",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s607",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.stalfos": [
+    {
+      "hash": -2561835739594936592,
+      "name": "enemy.stalfos",
+      "mainLocation": {
+        "cell": "s203",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s203",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": 4097304113544750909,
+      "name": "enemy.stalfos",
+      "mainLocation": {
+        "cell": "s218",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s218",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s219",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.swampZola.blue": [
+    {
+      "hash": -2605500488061777051,
+      "name": "enemy.swampZola.blue",
+      "mainLocation": {
+        "cell": "m26",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m26",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p22",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v19",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.swampZola.blue.projectile": [
+    {
+      "hash": 3604646591865550045,
+      "name": "enemy.swampZola.blue.projectile",
+      "mainLocation": {
+        "cell": "m26",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m26",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n25",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "o25",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "p22",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "v19",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.swampZola.green": [
+    {
+      "hash": 4600569274031924236,
+      "name": "enemy.swampZola.green",
+      "mainLocation": {
+        "cell": "j11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j11",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n12",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t16",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.swampZola.green.projectile": [
+    {
+      "hash": -810575462072880627,
+      "name": "enemy.swampZola.green.projectile",
+      "mainLocation": {
+        "cell": "j11",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j11",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "l12",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n12",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "r17",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "r18",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "t15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.tektite": [
+    {
+      "hash": -6243211029302270198,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "j16",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "k16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l16",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "m15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r5",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r8",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "v9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x9",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 8095231928460582359,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "s101a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s101a",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s103",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s104",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s116",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -3725458259778915957,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "s101a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s101a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -3516864404611514227,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "s7",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s7",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -8718708290317265509,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "v12",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v12",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 3821411931213159840,
+      "name": "enemy.tektite",
+      "mainLocation": {
+        "cell": "s118",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s118",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.tinyFish": [
+    {
+      "hash": 3395666633370878121,
+      "name": "enemy.tinyFish",
+      "mainLocation": {
+        "cell": "p14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p14",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.tornado": [
+    {
+      "hash": 1950410984910905775,
+      "name": "enemy.tornado",
+      "mainLocation": {
+        "cell": "s302",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s302",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s303",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.tumbleHead": [
+    {
+      "hash": 3669860228087204146,
+      "name": "enemy.tumbleHead",
+      "mainLocation": {
+        "cell": "r15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.tumbleSkull": [
+    {
+      "hash": 5774509898495361556,
+      "name": "enemy.tumbleSkull",
+      "mainLocation": {
+        "cell": "s310",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s310",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s311",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.tumbleBot": [
+    {
+      "hash": -7189127884432361171,
+      "name": "enemy.tumbleBot",
+      "mainLocation": {
+        "cell": "f21",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "f25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h20",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "h25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i21",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i22",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i24",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "i25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n14",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o15",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p13",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q13",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "r15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -3860323010553734196,
+      "name": "enemy.tumbleWeed",
+      "mainLocation": {
+        "cell": "p11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p11",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.turtle": [
+    {
+      "hash": -50748751078291556,
+      "name": "enemy.turtle",
+      "mainLocation": {
+        "cell": "s519",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s519",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s520",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.ursore": [
+    {
+      "hash": 6416553729212617143,
+      "name": "enemy.ursore",
+      "mainLocation": {
+        "cell": "s628",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s628",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.vapora": [
+    {
+      "hash": -2953617571495415403,
+      "name": "enemy.vapora",
+      "mainLocation": {
+        "cell": "s307",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s307",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s314",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.vapora.projectile": [
+    {
+      "hash": 6601667771525677977,
+      "name": "enemy.vapora.projectile",
+      "mainLocation": {
+        "cell": "s307",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s307",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s314",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.vire": [
+    {
+      "hash": -8833482373290003817,
+      "name": "enemy.vire",
+      "mainLocation": {
+        "cell": "s204",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s204",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s206",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.volta": [
+    {
+      "hash": -450905462342498361,
+      "name": "enemy.volta",
+      "mainLocation": {
+        "cell": "s316",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s316",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s318",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s320",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.wallSpike": [
+    {
+      "hash": -4538614956772313842,
+      "name": "enemy.wallSpike",
+      "mainLocation": {
+        "cell": "s502",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s502",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s509",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s514",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -7531821925274570735,
+      "name": "enemy.wallSpike",
+      "mainLocation": {
+        "cell": "s503",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s503",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "enemy.wallmaster": [
+    {
+      "hash": -8266212673839620686,
+      "name": "enemy.wallmaster",
+      "mainLocation": {
+        "cell": "s222",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s222",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.warbane": [
+    {
+      "hash": -4346956081250850720,
+      "name": "enemy.warbane",
+      "mainLocation": {
+        "cell": "gl7",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl7",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s712",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s721",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s723",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.warbane.projectile": [
+    {
+      "hash": -8881305004392056163,
+      "name": "enemy.warbane.projectile",
+      "mainLocation": {
+        "cell": "gl7",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "gl7",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.wizzrobe": [
+    {
+      "hash": 2055294585511743087,
+      "name": "enemy.wizzrobe",
+      "mainLocation": {
+        "cell": "s209",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s209",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s210",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s211",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s416",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s417",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s419",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.wizzrobe.projectile": [
+    {
+      "hash": -4296160715209760189,
+      "name": "enemy.wizzrobe.projectile",
+      "mainLocation": {
+        "cell": "s209",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s209",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s210",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -854169203009620699,
+      "name": "enemy.wizzrobe.projectile",
+      "mainLocation": {
+        "cell": "s211",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s211",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s416",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s417",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s419",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.zol": [
+    {
+      "hash": 8683323158314968970,
+      "name": "enemy.zol",
+      "mainLocation": {
+        "cell": "s503",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s503",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s506",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -8777804692600115399,
+      "name": "enemy.zol",
+      "mainLocation": {
+        "cell": "s509",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s509",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.archery.unknownActor331": [
+    {
+      "hash": 5042580904788743832,
+      "name": "env.archery.unknownActor331",
+      "mainLocation": {
+        "cell": "s606",
+        "isOverworld": false,
+        "descIndex": 4
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s606",
+          "isOverworld": false,
+          "descIndex": 4
+        }
+      ]
+    }
+  ],
+  "env.archeryTarget": [
+    {
+      "hash": -2341073011165220030,
+      "name": "env.archeryTarget",
+      "mainLocation": {
+        "cell": "s606",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s606",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s606",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s606",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.barrier.s2.bottom": [
+    {
+      "hash": 5778299015640999651,
+      "name": "env.barrier.s2.bottom",
+      "mainLocation": {
+        "cell": "s224",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s224",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.barrier.s2.left": [
+    {
+      "hash": 7875555225906344284,
+      "name": "env.barrier.s2.left",
+      "mainLocation": {
+        "cell": "s207",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s207",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.barrier.s2.right": [
+    {
+      "hash": 4013320420405465780,
+      "name": "env.barrier.s2.right",
+      "mainLocation": {
+        "cell": "s214",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s214",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "s207",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s214",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s2.top": [
+    {
+      "hash": -7090304332126086968,
+      "name": "env.barrier.s2.top",
+      "mainLocation": {
+        "cell": "s224",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s224",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s3.bottom": [
+    {
+      "hash": -4098281777352352630,
+      "name": "env.barrier.s3.bottom",
+      "mainLocation": {
+        "cell": "s321",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s321",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.barrier.s3.top": [
+    {
+      "hash": -5691217181457635034,
+      "name": "env.barrier.s3.top",
+      "mainLocation": {
+        "cell": "s321",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s321",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s4.left": [
+    {
+      "hash": -4307634414118921992,
+      "name": "env.barrier.s4.left",
+      "mainLocation": {
+        "cell": "s422",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s422",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.barrier.s4.right": [
+    {
+      "hash": 4290361603214227514,
+      "name": "env.barrier.s4.right",
+      "mainLocation": {
+        "cell": "s422",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s422",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s5.left": [
+    {
+      "hash": 4985614228311223187,
+      "name": "env.barrier.s5.left",
+      "mainLocation": {
+        "cell": "s525",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s525",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.barrier.s5.right": [
+    {
+      "hash": -3695327412306192794,
+      "name": "env.barrier.s5.right",
+      "mainLocation": {
+        "cell": "s525",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s525",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s6.left": [
+    {
+      "hash": -5395899043539879888,
+      "name": "env.barrier.s6.left",
+      "mainLocation": {
+        "cell": "s628",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s628",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s6.right": [
+    {
+      "hash": -8939519058312709885,
+      "name": "env.barrier.s6.right",
+      "mainLocation": {
+        "cell": "s628",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s628",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.barrier.s7.right": [
+    {
+      "hash": -1625914013560565480,
+      "name": "env.barrier.s7.right",
+      "mainLocation": {
+        "cell": "s723",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s723",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.barrier.s7.top": [
+    {
+      "hash": -467383492098690232,
+      "name": "env.barrier.s7.top",
+      "mainLocation": {
+        "cell": "s723",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s723",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.block.blue": [
+    {
+      "hash": 1172065102721310199,
+      "name": "env.block.blue",
+      "mainLocation": {
+        "cell": "s313",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s313",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s316",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s316",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.block.white": [
+    {
+      "hash": 4312890304064816934,
+      "name": "env.block.white",
+      "mainLocation": {
+        "cell": "s602",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s602",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s616",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.bridge.ladder": [
+    {
+      "hash": 1660218078795072672,
+      "name": "env.bridge.ladder",
+      "mainLocation": {
+        "cell": "s102",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s102",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.bridge.movingRock": [
+    {
+      "hash": 2598699552120524552,
+      "name": "env.bridge.movingRock",
+      "mainLocation": {
+        "cell": "s208",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s208",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.bridge.plank": [
+    {
+      "hash": -862666622254550577,
+      "name": "env.bridge.plank",
+      "mainLocation": {
+        "cell": "s505",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s505",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.bridge.unknownActor111": [
+    {
+      "hash": -6249227997466345361,
+      "name": "env.bridge.unknownActor111",
+      "mainLocation": {
+        "cell": "m25a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m25a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.celestialSign": [
+    {
+      "hash": -6562560307728498411,
+      "name": "env.celestialSign",
+      "mainLocation": {
+        "cell": "s122",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s122",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s225",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s322",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s423",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s526",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s629",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s724",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.door": [
+    {
+      "hash": 6454492198512790273,
+      "name": "env.door",
+      "mainLocation": {
+        "cell": "s203",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s203",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.ironBars.bottom": [
+    {
+      "hash": -5915252855697692774,
+      "name": "env.ironBars.bottom",
+      "mainLocation": {
+        "cell": "s121",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s121",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.ironBars.top": [
+    {
+      "hash": -2364852658715297115,
+      "name": "env.ironBars.top",
+      "mainLocation": {
+        "cell": "s121",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s121",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.laserWall": [
+    {
+      "hash": -4908578139890565075,
+      "name": "env.laserWall",
+      "mainLocation": {
+        "cell": "ab17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "ab17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "ab17",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -170647776778949005,
+      "name": "env.laserWall",
+      "mainLocation": {
+        "cell": "s120",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s120",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -2238083919297024754,
+      "name": "env.laserWall",
+      "mainLocation": {
+        "cell": "s314",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s314",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.passage": [
+    {
+      "hash": -2640921174032030387,
+      "name": "env.passage",
+      "mainLocation": {
+        "cell": "s203",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s203",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.pit": [
+    {
+      "hash": 2333474410720865229,
+      "name": "env.pit",
+      "mainLocation": {
+        "cell": "s201",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s201",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s201",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.raft": [
+    {
+      "hash": 7529558676231300961,
+      "name": "env.raft",
+      "mainLocation": {
+        "cell": "l28",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l28",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "o28",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s516",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s517",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s523",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 8849559495217359497,
+      "name": "env.raft",
+      "mainLocation": {
+        "cell": "m28",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q28",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s524",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -1177634376927377905,
+      "name": "env.raft",
+      "mainLocation": {
+        "cell": "s519",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s519",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s520",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s521",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s522",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.redBootsEffect": [
+    {
+      "hash": -7557672691998371870,
+      "name": "env.redBootsEffect",
+      "mainLocation": {
+        "cell": "s17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "t18",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -7918756349783356450,
+      "name": "env.redBootsEffect",
+      "mainLocation": {
+        "cell": "u18",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u18",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "env.rippedTentWall": [
+    {
+      "hash": 784067673847763572,
+      "name": "env.rippedTentWall",
+      "mainLocation": {
+        "cell": "s215",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s215",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "env.switch": [
+    {
+      "hash": -5792202364128176912,
+      "name": "env.switch",
+      "mainLocation": {
+        "cell": "m25a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m25a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": 2262020554262559367,
+      "name": "env.switch",
+      "mainLocation": {
+        "cell": "s403",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s403",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s421",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 439032549496834711,
+      "name": "env.switch",
+      "mainLocation": {
+        "cell": "s420",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s420",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s420",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s420",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s607",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s608",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s608",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s614",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.tallFire": [
+    {
+      "hash": 3151567922964605813,
+      "name": "env.tallFire",
+      "mainLocation": {
+        "cell": "b7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "b7",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "b7",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": -1534031375763518538,
+      "name": "env.tallFire",
+      "mainLocation": {
+        "cell": "j15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j15",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s711",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s718",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 4552813781974329810,
+      "name": "env.tallFire",
+      "mainLocation": {
+        "cell": "s706",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s706",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s720",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.torch": [
+    {
+      "hash": -4439797350189490657,
+      "name": "env.torch",
+      "mainLocation": {
+        "cell": "s115",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s115",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -2278532949262153413,
+      "name": "env.torch",
+      "mainLocation": {
+        "cell": "s116",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s116",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": -7706196535779158908,
+      "name": "env.torch",
+      "mainLocation": {
+        "cell": "s118",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s118",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": 2199997014002328525,
+      "name": "env.torch",
+      "mainLocation": {
+        "cell": "s119",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s119",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.unknownActor254": [
+    {
+      "hash": -8647193799529628417,
+      "name": "env.unknownActor254",
+      "mainLocation": {
+        "cell": "s206",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s206",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.unknownActor275": [
+    {
+      "hash": -2164647798124060475,
+      "name": "env.unknownActor275",
+      "mainLocation": {
+        "cell": "s305",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s305",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s306",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s319",
+          "isOverworld": false,
+          "descIndex": 2
+        },
+        {
+          "cell": "s707",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.unknownActor288": [
+    {
+      "hash": -2309164362629864912,
+      "name": "env.unknownActor288",
+      "mainLocation": {
+        "cell": "s319",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s319",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.teleportPixel": [
+    {
+      "hash": -6751886022752997095,
+      "name": "env.teleportPixel",
+      "mainLocation": {
+        "cell": "g32",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "g32",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "g32",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 5324818740479084304,
+      "name": "env.teleportPixel",
+      "mainLocation": {
+        "cell": "g32",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "g32",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "g32",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -7677247855401341245,
+      "name": "env.teleportPixel",
+      "mainLocation": {
+        "cell": "j22",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -3675321773299051544,
+      "name": "env.teleportPixel",
+      "mainLocation": {
+        "cell": "k13",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "k13",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": 6490512847115808305,
+      "name": "env.teleportPixel",
+      "mainLocation": {
+        "cell": "v16",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v16",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "env.waterSpout": [
+    {
+      "hash": -6230389556835031034,
+      "name": "env.waterSpout",
+      "mainLocation": {
+        "cell": "t18",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "t18",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.compass.s1": [
+    {
+      "hash": 2614441705922079502,
+      "name": "item.compass.s1",
+      "mainLocation": {
+        "cell": "s105",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s105",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.compass.s2": [
+    {
+      "hash": -5347671969486586106,
+      "name": "item.compass.s2",
+      "mainLocation": {
+        "cell": "s209",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s209",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.compass.s3": [
+    {
+      "hash": -5566804123941194502,
+      "name": "item.compass.s3",
+      "mainLocation": {
+        "cell": "s308",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s308",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.compass.s4": [
+    {
+      "hash": -1421400623674503455,
+      "name": "item.compass.s4",
+      "mainLocation": {
+        "cell": "s406",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s406",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.compass.s5": [
+    {
+      "hash": -2495942759791068684,
+      "name": "item.compass.s5",
+      "mainLocation": {
+        "cell": "s514",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s514",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.compass.s6": [
+    {
+      "hash": 8264340689222750513,
+      "name": "item.compass.s6",
+      "mainLocation": {
+        "cell": "s603",
+        "isOverworld": false,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s603",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.compass.s7": [
+    {
+      "hash": -1269656024087121673,
+      "name": "item.compass.s7",
+      "mainLocation": {
+        "cell": "s704",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s704",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.map.s1": [
+    {
+      "hash": -5458350200880673896,
+      "name": "item.map.s1",
+      "mainLocation": {
+        "cell": "s104",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s104",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s2": [
+    {
+      "hash": -134511311015313932,
+      "name": "item.map.s2",
+      "mainLocation": {
+        "cell": "s206",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s206",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s3": [
+    {
+      "hash": 6204987329986752154,
+      "name": "item.map.s3",
+      "mainLocation": {
+        "cell": "s302",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s302",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s4": [
+    {
+      "hash": 7915490587710083945,
+      "name": "item.map.s4",
+      "mainLocation": {
+        "cell": "u16",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u16",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s5": [
+    {
+      "hash": -2118621677372703076,
+      "name": "item.map.s5",
+      "mainLocation": {
+        "cell": "s503",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s503",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s6": [
+    {
+      "hash": -5146206919701104127,
+      "name": "item.map.s6",
+      "mainLocation": {
+        "cell": "s602",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s602",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.map.s7": [
+    {
+      "hash": 1357062440906994211,
+      "name": "item.map.s7",
+      "mainLocation": {
+        "cell": "s705",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s705",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.admitTicket": [
+    {
+      "hash": -1446246635266715010,
+      "name": "item.treasure.admitTicket",
+      "mainLocation": {
+        "cell": "s609",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s609",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.alligatorBoots": [
+    {
+      "hash": -2074771821457817342,
+      "name": "item.treasure.alligatorBoots",
+      "mainLocation": {
+        "cell": "v14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v14",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.blackKey": [
+    {
+      "hash": 5762711442468726108,
+      "name": "item.treasure.blackKey",
+      "mainLocation": {
+        "cell": "n11",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "s220",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.blackOrb": [
+    {
+      "hash": 6717366638641956489,
+      "name": "item.treasure.blackOrb",
+      "mainLocation": {
+        "cell": "s214",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s214",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s214",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 8797909053947275917,
+      "name": "item.treasure.blackOrb",
+      "mainLocation": {
+        "cell": "s213",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s213",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.bone": [
+    {
+      "hash": -4415282928569740969,
+      "name": "item.treasure.bone",
+      "mainLocation": {
+        "cell": "k13a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.bouquet": [
+    {
+      "hash": 3548074375882921831,
+      "name": "item.treasure.bouquet",
+      "mainLocation": {
+        "cell": "s601",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s601",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s601",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.candle": [
+    {
+      "hash": 5201846063493916337,
+      "name": "item.treasure.candle",
+      "mainLocation": {
+        "cell": "f26",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f26",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 3752838003605162534,
+      "name": "item.treasure.candle",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": 5124335735031027691,
+      "name": "item.treasure.candle",
+      "mainLocation": {
+        "cell": "k14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k14",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "l13a",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "t20",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.coal": [
+    {
+      "hash": -939360997064647874,
+      "name": "item.treasure.coal",
+      "mainLocation": {
+        "cell": "aa15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "aa15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.dagger": [
+    {
+      "hash": -4153390182332554408,
+      "name": "item.treasure.dagger",
+      "mainLocation": {
+        "cell": "s215",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s215",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.deepFriedOctorokLegs": [
+    {
+      "hash": -6390646372480089406,
+      "name": "item.treasure.deepFriedOctorokLegs",
+      "mainLocation": {
+        "cell": "v14",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v14",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.diamond": [
+    {
+      "hash": -2193240495169569039,
+      "name": "item.treasure.diamond",
+      "mainLocation": {
+        "cell": "l13a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l13a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.emptyWaterBottle": [
+    {
+      "hash": -5385490028874778184,
+      "name": "item.treasure.emptyWaterBottle",
+      "mainLocation": {
+        "cell": "j24",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j24",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.feather": [
+    {
+      "hash": 860756896719350962,
+      "name": "item.treasure.feather",
+      "mainLocation": {
+        "cell": "n11",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.fishingNet": [
+    {
+      "hash": -3319268150457716686,
+      "name": "item.treasure.fishingNet",
+      "mainLocation": {
+        "cell": "u20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u20",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.treasure.flute": [
+    {
+      "hash": -7870681881407046933,
+      "name": "item.treasure.flute",
+      "mainLocation": {
+        "cell": "l14",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l14",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.fullWaterBottle": [
+    {
+      "hash": -2069153261919072342,
+      "name": "item.treasure.fullWaterBottle",
+      "mainLocation": {
+        "cell": "e20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "e20",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.treasure.goldKey": [
+    {
+      "hash": 622840159686037149,
+      "name": "item.treasure.goldKey",
+      "mainLocation": {
+        "cell": "f26",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f26",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "t20",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.goldenBoots": [
+    {
+      "hash": 7546018920875425800,
+      "name": "item.treasure.goldenBoots",
+      "mainLocation": {
+        "cell": "v16",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v16",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.goldenKey": [
+    {
+      "hash": -1755358751856522072,
+      "name": "item.treasure.goldenKey",
+      "mainLocation": {
+        "cell": "s204",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s204",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.harp": [
+    {
+      "hash": -6961606889916298058,
+      "name": "item.treasure.harp",
+      "mainLocation": {
+        "cell": "j21a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j21a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 4402644996510531476,
+      "name": "item.treasure.harp",
+      "mainLocation": {
+        "cell": "l14",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l14",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.heartContainer": [
+    {
+      "hash": 5309616419264918201,
+      "name": "item.treasure.heartContainer",
+      "mainLocation": {
+        "cell": "f10",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o11a",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s18",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 5213604136325787984,
+      "name": "item.treasure.heartContainer",
+      "mainLocation": {
+        "cell": "m25a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m25a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.ladder": [
+    {
+      "hash": -7025024910829767946,
+      "name": "item.treasure.ladder",
+      "mainLocation": {
+        "cell": "f28",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f28",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.treasure.lifePotion": [
+    {
+      "hash": 3794384614687403853,
+      "name": "item.treasure.lifePotion",
+      "mainLocation": {
+        "cell": "e7",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "e7",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "p12",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": 3411221748567394485,
+      "name": "item.treasure.lifePotion",
+      "mainLocation": {
+        "cell": "k14",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k14",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    },
+    {
+      "hash": 7525556501947733386,
+      "name": "item.treasure.lifePotion",
+      "mainLocation": {
+        "cell": "t20",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "t20",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.magicShield": [
+    {
+      "hash": 4644084991064898778,
+      "name": "item.treasure.magicShield",
+      "mainLocation": {
+        "cell": "f26",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f26",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.plank": [
+    {
+      "hash": 7334809997694389825,
+      "name": "item.treasure.plank",
+      "mainLocation": {
+        "cell": "s504",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s504",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.treasure.raft": [
+    {
+      "hash": -2529773022322312719,
+      "name": "item.treasure.raft",
+      "mainLocation": {
+        "cell": "k15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.redBoots": [
+    {
+      "hash": 2716864676013586084,
+      "name": "item.treasure.redBoots",
+      "mainLocation": {
+        "cell": "s116",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s116",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.redBow": [
+    {
+      "hash": 2852216883777017172,
+      "name": "item.treasure.redBow",
+      "mainLocation": {
+        "cell": "s601",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s601",
+          "isOverworld": true,
+          "descIndex": 2
+        },
+        {
+          "cell": "s601",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.repellent": [
+    {
+      "hash": 7877542899678613326,
+      "name": "item.treasure.repellent",
+      "mainLocation": {
+        "cell": "v14",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v14",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.rug": [
+    {
+      "hash": 7977768558875893632,
+      "name": "item.treasure.rug",
+      "mainLocation": {
+        "cell": "s314",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s314",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.treasure.saltcellar": [
+    {
+      "hash": 1642433001412409524,
+      "name": "item.treasure.saltcellar",
+      "mainLocation": {
+        "cell": "s601",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s601",
+          "isOverworld": true,
+          "descIndex": 3
+        },
+        {
+          "cell": "s601",
+          "isOverworld": false,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.treasure.squareTicket": [
+    {
+      "hash": 1060755545266162834,
+      "name": "item.treasure.squareTicket",
+      "mainLocation": {
+        "cell": "s618",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s618",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.vialOfAcid": [
+    {
+      "hash": 4544098108836404623,
+      "name": "item.treasure.vialOfAcid",
+      "mainLocation": {
+        "cell": "v16a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v16a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.treasure.vialOfWinds": [
+    {
+      "hash": -970172041897059655,
+      "name": "item.treasure.vialOfWinds",
+      "mainLocation": {
+        "cell": "j24",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j24",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.pyros": [
+    {
+      "hash": -1307395530612699869,
+      "name": "item.weapon.pyros",
+      "mainLocation": {
+        "cell": "j15",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j15",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.boomerang": [
+    {
+      "hash": -2099337266509876364,
+      "name": "item.weapon.boomerang",
+      "mainLocation": {
+        "cell": "d24",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "d24",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.bowAndArrow": [
+    {
+      "hash": -9108967944192350007,
+      "name": "item.weapon.bowAndArrow",
+      "mainLocation": {
+        "cell": "y14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "y14",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 7687760096115259996,
+      "name": "item.weapon.bowAndArrow",
+      "mainLocation": {
+        "cell": "s304",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s304",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.broadsword": [
+    {
+      "hash": -4272433579293967178,
+      "name": "item.weapon.broadsword",
+      "mainLocation": {
+        "cell": "p8",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p8",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.calm": [
+    {
+      "hash": -1127100738237559762,
+      "name": "item.weapon.calm",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 6
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 6
+        }
+      ]
+    }
+  ],
+  "item.weapon.dagger": [
+    {
+      "hash": -3249131177653882958,
+      "name": "item.weapon.dagger",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 5
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 5
+        }
+      ]
+    }
+  ],
+  "item.weapon.firestorm": [
+    {
+      "hash": -2115485338061933958,
+      "name": "item.weapon.firestorm",
+      "mainLocation": {
+        "cell": "j22",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.goldNecklace": [
+    {
+      "hash": -2366447640477039791,
+      "name": "item.weapon.goldNecklace",
+      "mainLocation": {
+        "cell": "s605",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s605",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.hammer": [
+    {
+      "hash": -5193728886234358127,
+      "name": "item.weapon.hammer",
+      "mainLocation": {
+        "cell": "s712",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s712",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.hourglass": [
+    {
+      "hash": -529900762308722354,
+      "name": "item.weapon.hourglass",
+      "mainLocation": {
+        "cell": "p20a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p20a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.jadeAmulet": [
+    {
+      "hash": -8041032930310824947,
+      "name": "item.weapon.jadeAmulet",
+      "mainLocation": {
+        "cell": "k13b",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13b",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.jadeRing": [
+    {
+      "hash": -2619337564655813660,
+      "name": "item.weapon.jadeRing",
+      "mainLocation": {
+        "cell": "s108",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s108",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.joust": [
+    {
+      "hash": 1504805278647982874,
+      "name": "item.weapon.joust",
+      "mainLocation": {
+        "cell": "h9",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h9",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.leatherBook": [
+    {
+      "hash": -6691737725088185944,
+      "name": "item.weapon.leatherBook",
+      "mainLocation": {
+        "cell": "p15",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p15",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.noise": [
+    {
+      "hash": 1732445292639351487,
+      "name": "item.weapon.noise",
+      "mainLocation": {
+        "cell": "r9",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r9",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.opalAmulet": [
+    {
+      "hash": -6378232298464411025,
+      "name": "item.weapon.opalAmulet",
+      "mainLocation": {
+        "cell": "p15",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p15",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "item.weapon.ringsOfFire": [
+    {
+      "hash": 7415580108988369428,
+      "name": "item.weapon.ringsOfFire",
+      "mainLocation": {
+        "cell": "k13b",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13b",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "item.weapon.roarStick": [
+    {
+      "hash": 4941730854839803605,
+      "name": "item.weapon.roarStick",
+      "mainLocation": {
+        "cell": "s608",
+        "isOverworld": false,
+        "descIndex": 4
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s608",
+          "isOverworld": false,
+          "descIndex": 4
+        }
+      ]
+    }
+  ],
+  "item.weapon.shortAxe": [
+    {
+      "hash": 5040337866387160175,
+      "name": "item.weapon.shortAxe",
+      "mainLocation": {
+        "cell": "k13",
+        "isOverworld": true,
+        "descIndex": 4
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13",
+          "isOverworld": true,
+          "descIndex": 4
+        }
+      ]
+    }
+  ],
+  "item.weapon.trident": [
+    {
+      "hash": -7566476493634324926,
+      "name": "item.weapon.trident",
+      "mainLocation": {
+        "cell": "u19",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u19",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.weapon.turquoiseRing": [
+    {
+      "hash": -421018457540793645,
+      "name": "item.weapon.turquoiseRing",
+      "mainLocation": {
+        "cell": "k13b",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13b",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "item.weapon.wand": [
+    {
+      "hash": -5475912807657362040,
+      "name": "item.weapon.wand",
+      "mainLocation": {
+        "cell": "h23",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h23",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.archeryMinigameOwner": [
+    {
+      "hash": 2501640551468573206,
+      "name": "npc.archeryMinigameOwner",
+      "mainLocation": {
+        "cell": "s606",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s606",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.beggar": [
+    {
+      "hash": 7499915188629297315,
+      "name": "npc.beggar",
+      "mainLocation": {
+        "cell": "j22",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.bitterbeck": [
+    {
+      "hash": -1532966049929038375,
+      "name": "npc.bitterbeck",
+      "mainLocation": {
+        "cell": "y5",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "y5",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.blacksmith": [
+    {
+      "hash": -2916054861684764908,
+      "name": "npc.blacksmith",
+      "mainLocation": {
+        "cell": "k14",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k14",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    },
+    {
+      "hash": -9003878957554883905,
+      "name": "npc.blacksmith",
+      "mainLocation": {
+        "cell": "l13a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l13a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.dressyWoman": [
+    {
+      "hash": 7035801839536557090,
+      "name": "npc.dressyWoman",
+      "mainLocation": {
+        "cell": "l15",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.ericAndIan": [
+    {
+      "hash": -710316508099514279,
+      "name": "npc.ericAndIan",
+      "mainLocation": {
+        "cell": "l14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l14",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.faust": [
+    {
+      "hash": 4696290496441932701,
+      "name": "npc.faust",
+      "mainLocation": {
+        "cell": "u18",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u18",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.friendlyGoblin": [
+    {
+      "hash": -6085255769305286786,
+      "name": "npc.friendlyGoblin",
+      "mainLocation": {
+        "cell": "h9",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h9",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.ghostDog": [
+    {
+      "hash": 8955695918522982273,
+      "name": "npc.ghostDog",
+      "mainLocation": {
+        "cell": "s6",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s6",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.ghostFarmer": [
+    {
+      "hash": 7135383362521620283,
+      "name": "npc.ghostFarmer",
+      "mainLocation": {
+        "cell": "j17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j17",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    },
+    {
+      "hash": 3062532551119229692,
+      "name": "npc.ghostFarmer",
+      "mainLocation": {
+        "cell": "j17",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j17",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    },
+    {
+      "hash": -9070927253717339798,
+      "name": "npc.ghostFarmer",
+      "mainLocation": {
+        "cell": "j17",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j17",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "npc.glebb": [
+    {
+      "hash": 8833432429804809194,
+      "name": "npc.glebb",
+      "mainLocation": {
+        "cell": "j24",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j24",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.goblin.unknownActor35": [
+    {
+      "hash": 6790441995719056743,
+      "name": "npc.goblin.unknownActor35",
+      "mainLocation": {
+        "cell": "g9",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "g9",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.golem": [
+    {
+      "hash": -2786900759780354600,
+      "name": "enemy.golem",
+      "mainLocation": {
+        "cell": "m25",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m25",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o23",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "o9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p10",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "p9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "q17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z4",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z6",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.greatFairy": [
+    {
+      "hash": -6547161300158345223,
+      "name": "npc.greatFairy",
+      "mainLocation": {
+        "cell": "ac18",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "ac18",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "n9",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "w8",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.greatFairy.sparkles": [
+    {
+      "hash": 470167574977214466,
+      "name": "npc.greatFairy.sparkles",
+      "mainLocation": {
+        "cell": "ac18",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "ac18",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "n9",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "w8",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.greenKnightSpectator": [
+    {
+      "hash": -7079595265265122422,
+      "name": "npc.greenKnightSpectator",
+      "mainLocation": {
+        "cell": "s622",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s622",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.gwynla": [
+    {
+      "hash": 4527971722612592984,
+      "name": "npc.gwynla",
+      "mainLocation": {
+        "cell": "r9",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r9",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.hag": [
+    {
+      "hash": -5585310553476104903,
+      "name": "npc.hag",
+      "mainLocation": {
+        "cell": "h29",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h29",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.hag.campfire": [
+    {
+      "hash": 3836500693527450720,
+      "name": "npc.hag.campfire",
+      "mainLocation": {
+        "cell": "h29",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "h29",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.hoodedWoman": [
+    {
+      "hash": -7062266062552854568,
+      "name": "npc.hoodedWoman",
+      "mainLocation": {
+        "cell": "v16",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v16",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.horse": [
+    {
+      "hash": -7622954412035722939,
+      "name": "npc.horse",
+      "mainLocation": {
+        "cell": "n11",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.houseKeeper": [
+    {
+      "hash": -5835239615305821592,
+      "name": "npc.houseKeeper",
+      "mainLocation": {
+        "cell": "w10",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "w10",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.krebb": [
+    {
+      "hash": 5150472414386904934,
+      "name": "npc.krebb",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 4
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 4
+        }
+      ]
+    }
+  ],
+  "npc.kronThePegleg": [
+    {
+      "hash": -4536765638674225977,
+      "name": "npc.kronThePegleg",
+      "mainLocation": {
+        "cell": "p12",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p12",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.livingFarmer": [
+    {
+      "hash": -8604076311185921524,
+      "name": "npc.livingFarmer",
+      "mainLocation": {
+        "cell": "l17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l17",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.lonlyn": [
+    {
+      "hash": -5924489438260490900,
+      "name": "npc.lonlyn",
+      "mainLocation": {
+        "cell": "r9",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r9",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.lounger": [
+    {
+      "hash": -6216927595683930764,
+      "name": "npc.lounger",
+      "mainLocation": {
+        "cell": "k13",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.madameKriggle": [
+    {
+      "hash": 7672456457895560656,
+      "name": "npc.madameKriggle",
+      "mainLocation": {
+        "cell": "k13b",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13b",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.merchant.unknownActor168": [
+    {
+      "hash": 3426897644056383096,
+      "name": "npc.merchant.unknownActor168",
+      "mainLocation": {
+        "cell": "s6",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s6",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.merchant.unknownActor179": [
+    {
+      "hash": -2083815227365307132,
+      "name": "npc.merchant.unknownActor179",
+      "mainLocation": {
+        "cell": "t20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "t20",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.merchant.unknownActor181": [
+    {
+      "hash": 6908793440395734478,
+      "name": "npc.merchant.unknownActor181",
+      "mainLocation": {
+        "cell": "u16",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "u16",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.merchant.unknownActor189": [
+    {
+      "hash": 4045173983886472968,
+      "name": "npc.merchant.unknownActor189",
+      "mainLocation": {
+        "cell": "v14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v14",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.moblinHeadInn.unknownActor58": [
+    {
+      "hash": 378536103309801998,
+      "name": "npc.moblinHeadInn.unknownActor58",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.moblinHeadInn.unknownActor59": [
+    {
+      "hash": -8643217587483774946,
+      "name": "npc.moblinHeadInn.unknownActor59",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "enemy.molluska": [
+    {
+      "hash": -5640316845469730419,
+      "name": "enemy.molluska",
+      "mainLocation": {
+        "cell": "o13",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "o13",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "y17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s220",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s221",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "enemy.molluska.projectile": [
+    {
+      "hash": 2491306897726626671,
+      "name": "enemy.molluska.projectile",
+      "mainLocation": {
+        "cell": "o13",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "o13",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "y17",
+          "isOverworld": true,
+          "descIndex": 1
+        },
+        {
+          "cell": "s220",
+          "isOverworld": false,
+          "descIndex": 1
+        },
+        {
+          "cell": "s221",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.mystic": [
+    {
+      "hash": -8118414483175322823,
+      "name": "npc.mystic",
+      "mainLocation": {
+        "cell": "v11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v11",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.oldSailor": [
+    {
+      "hash": 6323471521073598820,
+      "name": "npc.oldSailor",
+      "mainLocation": {
+        "cell": "p20a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p20a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.pickpocket": [
+    {
+      "hash": -2275923286607405486,
+      "name": "npc.pickpocket",
+      "mainLocation": {
+        "cell": "l27a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l27a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.purpleStallOwner": [
+    {
+      "hash": -5505648234983812416,
+      "name": "npc.purpleStallOwner",
+      "mainLocation": {
+        "cell": "s609",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s609",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.quarryMiner": [
+    {
+      "hash": 3628062645976963215,
+      "name": "npc.quarryMiner",
+      "mainLocation": {
+        "cell": "aa15",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "aa15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.randomCapeGuy": [
+    {
+      "hash": -3364356269286480514,
+      "name": "npc.randomCapeGuy",
+      "mainLocation": {
+        "cell": "l13",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l13",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.rebel.left": [
+    {
+      "hash": -4611543201868227528,
+      "name": "npc.rebel.left",
+      "mainLocation": {
+        "cell": "z13",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "z13",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.rebel.right": [
+    {
+      "hash": -2750616859353875428,
+      "name": "npc.rebel.right",
+      "mainLocation": {
+        "cell": "z13",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "z13",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.sailor": [
+    {
+      "hash": -2565449953785055440,
+      "name": "npc.sailor",
+      "mainLocation": {
+        "cell": "l27",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l27",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "l28",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.sailor2": [
+    {
+      "hash": 2861937040551976254,
+      "name": "npc.sailor2",
+      "mainLocation": {
+        "cell": "l28",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l28",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.shopkeeperAndKnave.unknownActor72": [
+    {
+      "hash": 2397959553855323585,
+      "name": "npc.shopkeeperAndKnave.unknownActor72",
+      "mainLocation": {
+        "cell": "k13a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.shopkeeperAndKnave.unknownActor73": [
+    {
+      "hash": -7939395425302698969,
+      "name": "npc.shopkeeperAndKnave.unknownActor73",
+      "mainLocation": {
+        "cell": "k13a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.shopkeeperDog": [
+    {
+      "hash": -8265298861803860105,
+      "name": "npc.shopkeeperDog",
+      "mainLocation": {
+        "cell": "k13",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k13",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.shurmak": [
+    {
+      "hash": -1630703441905698993,
+      "name": "npc.shurmak",
+      "mainLocation": {
+        "cell": "p15",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "item.treasure.silverTrumpet": [
+    {
+      "hash": -6290043204877896956,
+      "name": "item.treasure.silverTrumpet",
+      "mainLocation": {
+        "cell": "k20",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k20",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.sirramBew": [
+    {
+      "hash": -3522714649607915196,
+      "name": "npc.sirramBew",
+      "mainLocation": {
+        "cell": "v16a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v16a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.skaterDude": [
+    {
+      "hash": 4973870055199701351,
+      "name": "npc.skaterDude",
+      "mainLocation": {
+        "cell": "g11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "g11",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.sleepingMan": [
+    {
+      "hash": -7957280515198698523,
+      "name": "npc.sleepingMan",
+      "mainLocation": {
+        "cell": "n17",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n17",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "x11",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.stallOwner2": [
+    {
+      "hash": 3506854232001648396,
+      "name": "npc.stallOwner2",
+      "mainLocation": {
+        "cell": "s603",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s603",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.talkingChest": [
+    {
+      "hash": -5354325356011261181,
+      "name": "npc.talkingChest",
+      "mainLocation": {
+        "cell": "s108",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s108",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.talkingMushroom": [
+    {
+      "hash": -6327684290280996638,
+      "name": "npc.talkingMushroom",
+      "mainLocation": {
+        "cell": "k20",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k20",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.thabul": [
+    {
+      "hash": -1340312123516119550,
+      "name": "npc.thabul",
+      "mainLocation": {
+        "cell": "v5",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "v5",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.thirstyChild": [
+    {
+      "hash": 5953066272315894023,
+      "name": "npc.thirstyChild",
+      "mainLocation": {
+        "cell": "s605",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s605",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.tiredTraveler": [
+    {
+      "hash": -4827188570742951730,
+      "name": "npc.tiredTraveler",
+      "mainLocation": {
+        "cell": "j22a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "j22a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "npc.toobar": [
+    {
+      "hash": -5008255031148182781,
+      "name": "npc.toobar",
+      "mainLocation": {
+        "cell": "l27a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l27a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.townMerchant": [
+    {
+      "hash": -4055379304682154811,
+      "name": "npc.townMerchant",
+      "mainLocation": {
+        "cell": "k14",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "k14",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknown20": [
+    {
+      "hash": -7109220827386412002,
+      "name": "npc.unknown20",
+      "mainLocation": {
+        "cell": "e7",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "e7",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor102": [
+    {
+      "hash": -192018360332988376,
+      "name": "npc.unknownActor102",
+      "mainLocation": {
+        "cell": "l27",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l27",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor116": [
+    {
+      "hash": 6038544897412227242,
+      "name": "npc.unknownActor116",
+      "mainLocation": {
+        "cell": "m27",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "m27",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor118": [
+    {
+      "hash": 1144775739102604466,
+      "name": "npc.unknownActor118",
+      "mainLocation": {
+        "cell": "n11",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor142": [
+    {
+      "hash": -7263244436596697705,
+      "name": "npc.unknownActor142",
+      "mainLocation": {
+        "cell": "p20a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "p20a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor148": [
+    {
+      "hash": 9195509579289155225,
+      "name": "npc.unknownActor148",
+      "mainLocation": {
+        "cell": "r10",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r10",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor149": [
+    {
+      "hash": -8259620983291435830,
+      "name": "npc.unknownActor149",
+      "mainLocation": {
+        "cell": "r10",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "r10",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor166": [
+    {
+      "hash": 5197935309531893178,
+      "name": "npc.unknownActor166",
+      "mainLocation": {
+        "cell": "s301",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s301",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "z5",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s301",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "z5",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor170": [
+    {
+      "hash": -2540871289491421674,
+      "name": "npc.unknownActor170",
+      "mainLocation": {
+        "cell": "s601",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s601",
+          "isOverworld": true,
+          "descIndex": 0
+        },
+        {
+          "cell": "s601",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor210": [
+    {
+      "hash": -4300565931365414808,
+      "name": "npc.unknownActor210",
+      "mainLocation": {
+        "cell": "z1",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "z1",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor24": [
+    {
+      "hash": -6630523771992401006,
+      "name": "npc.unknownActor24",
+      "mainLocation": {
+        "cell": "f26",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "f26",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor323": [
+    {
+      "hash": -603615429122463735,
+      "name": "npc.unknownActor323",
+      "mainLocation": {
+        "cell": "s603",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s603",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s604",
+          "isOverworld": false,
+          "descIndex": 0
+        },
+        {
+          "cell": "s619",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor325": [
+    {
+      "hash": -8217080601950483932,
+      "name": "npc.unknownActor325",
+      "mainLocation": {
+        "cell": "s603",
+        "isOverworld": false,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s603",
+          "isOverworld": false,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor336": [
+    {
+      "hash": 5752659628112464091,
+      "name": "npc.unknownActor336",
+      "mainLocation": {
+        "cell": "s611",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s611",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.unknownActor96": [
+    {
+      "hash": 6449313103734126320,
+      "name": "npc.unknownActor96",
+      "mainLocation": {
+        "cell": "l14a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l14a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.waiter": [
+    {
+      "hash": -7171148475561198254,
+      "name": "npc.waiter",
+      "mainLocation": {
+        "cell": "n11a",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11a",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.whiteSteedLodge.unknownActor122": [
+    {
+      "hash": -8420546912973844268,
+      "name": "npc.whiteSteedLodge.unknownActor122",
+      "mainLocation": {
+        "cell": "n11a",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11a",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.whiteSteedLodge.unknownActor124": [
+    {
+      "hash": 2103621186665116103,
+      "name": "npc.whiteSteedLodge.unknownActor124",
+      "mainLocation": {
+        "cell": "n11a",
+        "isOverworld": true,
+        "descIndex": 2
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11a",
+          "isOverworld": true,
+          "descIndex": 2
+        }
+      ]
+    }
+  ],
+  "npc.whiteSteedLodge.unknownActor125": [
+    {
+      "hash": -4775772220006210886,
+      "name": "npc.whiteSteedLodge.unknownActor125",
+      "mainLocation": {
+        "cell": "n11a",
+        "isOverworld": true,
+        "descIndex": 3
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "n11a",
+          "isOverworld": true,
+          "descIndex": 3
+        }
+      ]
+    }
+  ],
+  "npc.wimbich.unknownActor89": [
+    {
+      "hash": 1163746781764447022,
+      "name": "npc.wimbich.unknownActor89",
+      "mainLocation": {
+        "cell": "l13",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l13",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.yalzan": [
+    {
+      "hash": 7896058124340633421,
+      "name": "npc.yalzan",
+      "mainLocation": {
+        "cell": "q15",
+        "isOverworld": true,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "q15",
+          "isOverworld": true,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.yellowStallOwner": [
+    {
+      "hash": -8303652943344351196,
+      "name": "npc.yellowStallOwner",
+      "mainLocation": {
+        "cell": "s618",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null,
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s618",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "npc.yvonne": [
+    {
+      "hash": -4841217582100853004,
+      "name": "npc.yvonne",
+      "mainLocation": {
+        "cell": "l14",
+        "isOverworld": true,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "l14",
+          "isOverworld": true,
+          "descIndex": 1
+        }
+      ]
+    }
+  ],
+  "npc.zeldaSliding": [
+    {
+      "hash": 1552875086527810780,
+      "name": "npc.zeldaSliding",
+      "mainLocation": {
+        "cell": "s202",
+        "isOverworld": false,
+        "descIndex": 0
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s202",
+          "isOverworld": false,
+          "descIndex": 0
+        }
+      ]
+    }
+  ],
+  "env.switch.floatingSkull": [
+    {
+      "hash": 904599478869847967,
+      "name": "env.switch.floatingSkull",
+      "mainLocation": {
+        "cell": "s319",
+        "isOverworld": false,
+        "descIndex": 1
+      },
+      "spriteGroups": [
+        null
+      ],
+      "locations": [
+        {
+          "cell": "s319",
+          "isOverworld": false,
+          "descIndex": 1
+        }
+      ]
+    }
+  ]
+}
