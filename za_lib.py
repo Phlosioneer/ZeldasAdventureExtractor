@@ -19,6 +19,7 @@ from za_images import decompressSprite, unpackPointerArray, unpackSpriteTree,\
 from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
 from za_scripts import ScriptSet
 
+# Compat for running scripts in both jupyter and console
 try:
     display
 except NameError:
@@ -83,6 +84,9 @@ PROJECTILE_FIELD_LOOKUP = {
 
 @dataclass(eq=True, frozen=True)
 class Coords:
+    """
+    Any coordinate position, in pixels, with (0, 0) at the top left.
+    """
     x: int
     y: int
 
@@ -107,8 +111,11 @@ class ActorDescLocation:
     
     Used for the spriteNames.json file.
     """
+
+    # True if the cell is in the `over.rtf` file, false if it's in `under.rtf`
     isOverworld: bool
     cell: str
+    # The index of this description in the cell's actor description array.
     index: int
 
 @dataclass(eq=True, frozen=True)
@@ -184,7 +191,7 @@ def _cellSerializer(o):
             return o.__dict__
         except AttributeError:
             try:
-                asdict(o)
+                return asdict(o)
             except KeyboardInterrupt as e:
                 raise e
             except:
@@ -192,11 +199,74 @@ def _cellSerializer(o):
 
 
 class Game:
+    ##############
+    # Cells
+
+    # Cells from `over.rtf`
+    overworldCells: Dict[str, "Cell"]
+    # Cells from `under.rtf`
+    underworldCells: Dict[str, "Cell"]
+    # Overworld cells that had errors while parsing
+    errorOverworldCells: List[str]
+    # Underworld cells that had errors while parsing
+    errorUnderworldCells: List[str]
+
+    ##############
+    # Common Data
+    #
+    # This data is stored separately from all other cells, because it's used on every
+    # screen. All of this data is parsed during __init__().
+
+    # The actor entry for Zelda.
+    zeldaActor: "Actor"
+    # The actor description for loot (hearts, rupees (no I will not call them rubies))
+    lootActorDesc: "ActorDescription"
+    # Heart sprites, used for the health bar. I think this is also used for the heart
+    # loot?
+    heartSprites: List[PIL.Image.Image]
+    rupeeCounterSprite: PIL.Image.Image
+    # Weapon animation definitions (scripts, actors, sprites, etc) organized by weapon
+    # name.
+    weapons: Dict[str, "Attack"]
+
+    ##############
+    # Aggregate Data
+    #
+    # Various fields that organize info from all the cells in the game for easier lookup.
+
+    # A list of all actor descriptions across all cells, organized by name. Actors are
+    # considered "the same" if they have identical sprites. Uses names that I came up with,
+    # or that were provide by fans; name list can be edited in `spriteNames.json` file.
+    spriteNames: Dict[str, List[List[ActorDescLocation]]]
+
+    # The reverse of the spriteNames list, for convenience.
+    spriteNameReverseLookup: Dict[ActorDescLocation, str]
+
+    ##############
+    # Internal data
+
+    # The CDI disk's filesystem
+    _gameData: cdi_filesystem.CdiFileSystem
+    
+    # `zelda.rtf`
+    _mainFile: ResourceMap
+    # `zelda_rl.rtf`
+    _zeldaRlFiles: ResourceMap
+    # `over.rtf`
+    _overFiles: ResourceMap
+    # `under.rtf`
+    _underFiles: ResourceMap
+    # `zelda_audio.rtf`
+    _audioFiles: ResourceMap
+    # `zelda_voice.rtf`
+    _voiceFiles: ResourceMap
+
+
     def __init__(self, dataFileName: str):
-        self.errorOverworldCells: List[str] = []
-        self.errorUnderworldCells: List[str] = []
-        self.overworldCells: List[Cell] = {}
-        self.underworldCells: List[Cell] = {}
+        self.errorOverworldCells = []
+        self.errorUnderworldCells = []
+        self.overworldCells = {}
+        self.underworldCells = {}
 
         self._gameData = cdi_filesystem.loadCdiImageFile(dataFileName)
         mainMapStream = StructStream(self._gameData.files["zelda.mapres"].getBytes(), endianPrefix=">")
@@ -207,16 +277,6 @@ class Game:
         self._audioFiles = self._parseSubFile("amap", "zelda_audio.rtf")
         self._voiceFiles = self._parseSubFile("vmap", "zelda_voice.rtf")
 
-        # This is a complete list of all fields.
-        self.zeldaActor: Actor
-        self.lootActorDesc: ActorDescription
-        self.heartSprites: List[PIL.Image.Image]
-        self.rupeeCounterSprite: PIL.Image.Image
-        self.weapons: Dict[str, Attack]
-
-        self.spriteNames: Dict[str, List[List[ActorDescLocation]]]
-        self.spriteNameReverseLookup: Dict[ActorDescLocation, str]
-
         self._parseCommonData()
         self._parseZeldaWeapons()
         self._parseSpriteNames()
@@ -226,26 +286,46 @@ class Game:
         Parse zelda, sparkle & smoke effects, loot, weapons, and HUD sprites.
         """
         
+        # The special "zinit" file is stored next to other cells, but is not a cell. zinit is
+        # probably short for "zelda init".
+        #
+        # Data record 0 has the metadata as a Resource Tree.
+        # Data record 1 has zelda's sprites in a Sprite Tree.
+        # Video record 0 has loot and HUD sprites.
         zinit = self._mainFile.subFiles["zinit"]
         commonData = zinit.getRecord(0, kind="data")
         commonResources = ResourceTree.parseFromStream(StructStream(commonData, endianPrefix=">"))
+
+        # The zinit metadata sections are:
+        #   zsp_cast: Same format as sp_cast for cells. Only one entry, for Zelda.
+        #   zsp_desc: Same format as sp_desc for cells. Only one entry, for Zelda.
+        #   zsp_groups: Same format as sp_groups for cells. All entries are for zelda.
+        #   csp_desc: Same format as sp_desc for cells. I think there's only one entry? That might be
+        #       wrong, though. First entry is for loot drops.
+        #   csp_groups: Same format as sp_groups for cells. I think there's only one entry, for loot.
+        #   zelda: CLUT table for zelda's sprites. Stored as an "array" of 1 element.
+        #   display: CLUT table for hud and loot sprites. Stored as an "array" of 1 element.
+        #
+        # The "z" prefix is for zelda, and the "c" prefix probably stands for "common".
 
         self.zeldaActor = Actor(commonResources.children["zsp_cast"].elements[0])
         self.zeldaActor.description = ActorDescription(commonResources.children["zsp_desc"].elements[0])
         self.zeldaActor.description.groups = \
             [SpriteGroup(s.copy()) for s in commonResources.children["zsp_groups"].elements]
-
+        # TODO: Confirm if there is only one csp_desc entry.
         self.lootActorDesc = ActorDescription(commonResources.children["csp_desc"].elements[0])
         self.lootActorDesc.groups = [
             SpriteGroup(commonResources.children["csp_groups"].elements[0])
         ]
 
+        # Decode the CLUT tables. There's one for Zelda and one for everything else.
         zeldaSpriteData = zinit.getRecord(1, kind="data")
         zeldaPalette = getClut(commonResources.children["zelda"].elements[0].takeAll())
         zeldaPalette = convertClutToRgba(zeldaPalette, indices=[0])
         hudPalette = getClut(commonResources.children["display"].elements[0].takeAll())
         hudPalette = convertClutToRgba(hudPalette, indices=[0])
 
+        # The clut values are positioned manually by code, so these sizes/indices are magic.
         # Zelda's palette begins at 0x18 and ends at 0x48
         preColors = [b'\0\0\0\0'] * 0x18
         preColors[BLACK] = b'\0\0\0\xFF'
@@ -256,10 +336,12 @@ class Game:
         # The HUD palette begins at 0x8 and ends at 0x18
         hudPalette = (b'\0\0\0\0' * 0x8) + hudPalette
 
+        # Unpack zelda's sprites. The sprite tree only has one top-level item, since it's just zelda.
         tree = unpackSpriteTree(zeldaSpriteData, zeldaPalette, "RGBA")
         self.zeldaActor.description._assignSprites(tree.elements[0])
         
-        # Loot and HUD sprites are mixed together.
+        # Loot and HUD sprites are mixed together. The video record starts with a pointer array with
+        # the sprite indices, then the sprite data follows.
         hudSpriteStream = StructStream(zinit.getRecord(0, kind="video"), endianPrefix=">")
         hudSprites = [decompressSprite(s, hudPalette, "RGBA") for s in unpackPointerArray(hudSpriteStream).elements]
         self.heartSprites = hudSprites[:3]
@@ -267,10 +349,24 @@ class Game:
         self.lootActorDesc.groups[0].sprites = hudSprites
     
     def _parseZeldaWeapons(self):
-        """Parse each of the attacks for zelda's weapons."""
+        """Parse each of the attacks for zelda's weapons. The attack and weapon format is not well understood."""
+        
+        # The special "invent" file is stored next to other cells, but is not a cell.
+        # Data record 0: ???
+        # Data record 1: Inventory metadata as a Resource Tree.
+        # TODO: What is in record 0? Are there other records not analyzed yet?
         inventoryDataRaw = self._mainFile.subFiles["invent"].getRecord(1, "data")
         inventoryData = ResourceTree.parseFromStream(StructStream(inventoryDataRaw, endianPrefix=">"))
+
+        # The invent metadata sections are:
+        #   labels: An array of null-terminated strings. These are the names of the sub-files for each weapon,
+        #           in _mainFile. The array order is the same as in zelda's inventory, shifted by +1. So the
+        #           weapon with id 3 has a definition file, and that filename is at index 2 in this array.
+        #           The game only loads the currently equipped weapon's file in memory.
+        #
         weaponFiles = [s.takeNullTermString().decode('ascii') for s in inventoryData.children["labels"].elements]
+        
+        # Parse each weapon file.
         self.weapons: Dict[str, Attack] = {}
         bar = tqdm(total=len(weaponFiles))
         for i, filename in enumerate(weaponFiles):
@@ -281,14 +377,27 @@ class Game:
         bar.close()
 
     def _parseZeldaWeapon(self, filename: str, id: int) -> "Attack":
-        """Parse one weapon."""
+        """Parse one weapon from its definition file. `id` is the weapon item's id."""
 
+        # Some weapons share definition files. Each file has the id of one of the weapons (the lowest one, 
+        # I think?), so if the id doesn't match we can infer that this file is being shared.
         if str(id) not in filename:
             sharedWithWeapon = SPELL_LOOKUP[int(filename[2:])]
         else:
             sharedWithWeapon = None
 
+        # The special weapon file is stored next to other cells, but is not a cell.
+        # Data record 0: Weapon metadata as a Resource Tree
+        # Data record 1: Projectile sprites as a Sprite Tree
         file = self._mainFile.subFiles[filename]
+
+        # The weapon metadata is organized very similar to a cell.
+        #   sp_desc: Same format as sp_desc for cells. Descriptions are for the projectile fired by the
+        #            weapon. There is always exactly one entry.
+        #   sp_groups: Same format as sp_groups for cells.
+        #   clut: An "array" with one element, which contains the packed CLUT data for the weapon's sprites.
+        #   wp_cmds: The script for this weapon, encoded as an array of 4-byte integers. See the `Attack`
+        #            class for more info.
         weaponDataStream = StructStream(file.getRecord(0, kind="data"), endianPrefix=">")
         weaponData = ResourceTree.parseFromStream(weaponDataStream)
         palette = getClut(weaponData.children["clut"].elements[0].takeAll())
@@ -304,6 +413,7 @@ class Game:
         spriteData = file.getRecord(1, kind="data")
         spriteTree = unpackSpriteTree(spriteData, palette, "RGBA")
         assert len(spriteTree.elements) == 1
+        # Still not sure what `unusedPointer` is for, but it's always zero for weapon sprites.
         assert spriteTree.unusedPointer == 0
         desc._assignSprites(spriteTree.elements[0])
 
@@ -318,20 +428,21 @@ class Game:
     
     def _parseSpriteNames(self):
         """
-        Parse the sprite names file.
-
-        TODO: Document the file structure.
+        Parse the sprite names file. See `spriteNames_format.md` for more info.
 
         TODO: Cleanup the json file's unused fields.
         """
         with open("spriteNames.json", "r") as f:
             rawData: dict = json.load(f)
+
+        # Reset the current maps.
         self.spriteNames: Dict[str, List[List[ActorDescLocation]]] = {}
         self.spriteNameReverseLookup: Dict[ActorDescLocation, str] = {}
         
         variants: List[dict]
         for name, variants in rawData.items():
             parsedVariants: List[List[ActorDescLocation]] = []
+            variant: dict
             for variant in variants:
                 locations: List[dict] = variant["locations"]
                 parsedLocations: List[ActorDescLocation] = []
@@ -341,7 +452,11 @@ class Game:
                         location["cell"],
                         location["descIndex"]
                     )
+
+                    # Ensure no locations are duplicated.
                     assert parsedLoc not in self.spriteNameReverseLookup, parsedLoc
+                    
+                    # Add to both lookup tables.
                     self.spriteNameReverseLookup[parsedLoc] = name
                     parsedLocations.append(parsedLoc)
                 parsedVariants.append(parsedLocations)
@@ -349,7 +464,7 @@ class Game:
 
     def cellNames(self, duplicates: bool = False) -> Iterator[Tuple[str, bool]]:
         """
-        An iterator over all cell names, and which world they're in. Very
+        Returns an iterator over all cell names, and which world they're in. Very
         cheap operation. `True` means Overworld, `False` means underworld.
 
         If a cell is in both the Overworld and Underworld, the `duplicates`
@@ -363,8 +478,8 @@ class Game:
     
     def cellDuplicateNames(self) -> Iterator[str]:
         """
-        An iterator over all cell names that appear in both the overworld and
-        the underworld. Very cheap operation.
+        Returns an iterator over all cell names that appear in both the overworld
+        and the underworld. Very cheap operation.
         """
         for name in self._underFiles.subFiles:
             if name in self._overFiles.subFiles:
@@ -372,11 +487,12 @@ class Game:
 
     def cells(self, duplicates: bool = True, useTqdm: bool = True) -> Iterator["Cell"]:
         """
-        An iterator over parsed cells, with an optional loading bar.
-        Cells are parsed lazily.
+        Returns an iterator over parsed cells, with an optional loading bar.
+        Cells are parsed lazily, right before they're returned by the iterator,
+        if they aren't already in the cell cache.
 
         If `duplicates=False` and a cell is in both the Overworld and
-        Underworld, the Overworld version is returned.
+        Underworld, only the Overworld version is returned.
         """
         
         if useTqdm:
@@ -411,18 +527,37 @@ class Game:
 
         The `path` argument MAY end in `/` but this is not required.
         """
+
+        # Correct the path if needed
         if path[-1] != "/":
             path += "/"
         bar = tqdm(total=len(self._overFiles.subFiles) + len(self._underFiles.subFiles))
         
         def exportWorld(folder: str, names: List[str], isOverworld: bool):
+            """
+            Sub-function to export a single world. Assumes that `folder` DOES NOT
+            end in `/`.
+            """
+            # Make intermediate directories, if needed.
             os.makedirs(folder, exist_ok=True)
+
+            # Go through every cell.
             for name in names:
                 bar.desc = name
+
+                # Get the cell from the cache (parsing it if needed).
                 cell = self.getCell(name, isOverworld)
+
+                # Save the scripts. The prettyPrint function mimics Python syntax,
+                # but it's not actually python code. But it makes understanding
+                # easier and enables nice syntax highlighting.
                 with open("{}/{}.py".format(folder, name), "w") as f:
                     f.write(cell._prettyPrintScripts())
+                
+                # Advance the progress bar.
                 bar.update(1)
+        
+        # Apply that sub-function to both overworld and underworld.
         try:
             exportWorld(path + "overworld", self._overFiles.subFiles.keys(), True)
             exportWorld(path + "underworld", self._underFiles.subFiles.keys(), False)
@@ -431,7 +566,8 @@ class Game:
 
     def getCell(self, name: str, isOverworld: Optional[bool] = None, silenceWarning: bool = False) -> "Cell":
         """
-        Parses a cell if needed, and then returns it.
+        Returns a parsed cell from the cell cache, or parses it from the
+        rtf file if needed.
 
         If `isOverworld` is not provided, both worlds are checked. If it
         is in both worlds, the Overworld is used and a warning is printed.
@@ -467,7 +603,9 @@ class Game:
         if name not in file.subFiles:
             raise Exception("Cell {} does not exist in {}".format(name, worldName))
         
+        # Is the cell in the cache?
         if name not in parsed:
+            # Parse and cache it.
             parsed[name] = self._parseCell(file.subFiles[name], name, isOverworld)
 
         return parsed[name]
@@ -476,16 +614,26 @@ class Game:
         """
         Force all cells to be parsed. Provides a tqdm bar.
         
-        If `refresh=True`, all previously parsed cells are deleted first.
-
-        TODO: Make tqdm optional.
+        If `refresh=True`, all previously parsed cells are deleted from the cell
+        cashe first.
         """
-        bar = tqdm(total=len(self._overFiles.subFiles) + len(self._underFiles.subFiles))
 
+        # Clear cache?
         if refresh:
             self.overworldCells = {}
             self.underworldCells = {}
 
+        # Force all cells to be parsed by iterating over them, but don't do anything
+        # with the results.
+        #
+        # TODO: Test this code. It should behave identically to the original code,
+        # but the original code is preserved below in case it fails. Whoever runs
+        # this function next can comment out the new code if needed.
+        for _ in self.cells():
+            pass
+        return
+        
+        bar = tqdm(total=len(self._overFiles.subFiles) + len(self._underFiles.subFiles))
         errorOverworldCells = []
         for name, file in self._overFiles.subFiles.items():
             bar.set_description("overworld: " + name)
@@ -522,34 +670,64 @@ class Game:
     def _parseCell(self, file: ResourceMapFileEntry, name: str, isOverworld: bool) -> "Cell":
         """
         Do the work of actually parsing a cell. This function DOES NOT add
-        the parsed cell to any lists!
+        the parsed cell to any lists/caches!
 
         The reason for a separate function is to implement the sprite name
         lookups.
         """
         
+        # Parse the cell normally.
         ret = Cell(file, name, isOverworld)
+
+        # Correlate the cell's Actor Descriptions with entries in the sprite
+        # name table.
         for i, desc in enumerate(ret.descriptions):
             location = ActorDescLocation(isOverworld, name, i)
+
+            # Every actor description needs to be accounted for in spriteNames.json
             assert location in self.spriteNameReverseLookup, location
+
             desc.commonName = self.spriteNameReverseLookup[location]
         return ret            
     
     def getSpritesByName(self, name: str, variant: int = 0) -> "SpriteGroup":
+        """
+        Get the sprite group for a given NPC name. Uses the first location in
+        the locations list to fetch the sprite group.
+
+        The variant defaults to 0 (the first variant).
+        """
         location = self._getActorVariantLocationsByName(name, variant)[0]
         desc = self._getActorByLocation(location)
         return desc.groups
     
     def getActorsByName(self, name: str, variant: int = 0) -> List["ActorDescription"]:
+        """
+        Get all actor descriptions for a given NPC name, across all cells in
+        the game.
+
+        The variant defaults to 0 (the first variant).
+        """
         locations = self._getActorVariantLocationsByName(name, variant)
         return [self._getActorByLocation(l) for l in locations]
 
     def _getActorByLocation(self, location: ActorDescLocation) -> "ActorDescription":
+        """
+        Find the actor description that corresponds to a particular location entry
+        in spriteNames.json.
+        """
         cell = self.getCell(location.cell, location.isOverworld)
         return cell.descriptions[location.index]
     
     def getAllActorVariantsByName(self, name: str) -> List[List["ActorDescription"]]:
+        """
+        List all the actor descriptions for all the variants of an NPC name.
+        """
+
+        # Sanity check: `name` is an NPC name
         assert name in self.spriteNames, name
+
+        # Iterate through the variants, and collect the descriptions for them.
         variants = self.spriteNames[name]
         ret = []
         for variant in variants:
@@ -557,22 +735,50 @@ class Game:
         return ret
 
     def _getActorVariantLocationsByName(self, name: str, variant: int) -> List["ActorDescription"]:
+        """
+        Resolves a (name, variantIndex) pair, with proper sanity checks.
+
+        Equivalent to `self.spriteNames[name][variant]`
+        """
         assert name in self.spriteNames, name
         variants = self.spriteNames[name]
         assert variant < len(variants), "{} < {}".format(variant, len(variants))
         return variants[variant]
     
     def assignVoiceLines(self):
+        """
+        Determine which voice lines belong to which cells. This is a rather slow
+        process.
+
+        Each cell contains the start index for their voice lines, and the cell's
+        scripts contain the index-offsets for individual voice lines. But the cell
+        doesn't know where its voice lines "end". You could figure that out by
+        finding the `max` of the used voice lines, but that would cause unused
+        voice lines to be left out.
+
+        So the solution is to sort the cells by their start index, and then use
+        the next cell's start index as their own end index. This guarantees each
+        voice line is included in a cell's data, even if it's unused.
+
+        The method assumes that scripts don't "share" voice lines by using
+        overlapping start and "end" indices. I checked this, and the assumption
+        is correct for this game, thankfully!
+        """
+
         # If we don't parse all the cells first, this sort
         # is really slow.
         self.parseAllCells()
 
-        cellsInVoiceOrder = list(map(
+        # Sort all the cells by voiceStartIndex, then get their names.
+        cellsInVoiceOrder: List[str] = list(map(
             lambda c: c.name,
             sorted(self.cells(duplicates=False, useTqdm=False), key=lambda c: c.info.voiceStartIndex)))
         
         bar = tqdm(total=self.totalCellCount())
         
+        # For each cell, store the indices of voice lines that belong to it, using
+        # the next cell's start index to compute the range.
+        #
         # silenceWarning=True because I'm handling duplicate cells below
         for i in range(len(cellsInVoiceOrder) - 1):
             current = self.getCell(cellsInVoiceOrder[i], silenceWarning=True)
@@ -580,9 +786,12 @@ class Game:
             next = self.getCell(cellsInVoiceOrder[i + 1], silenceWarning=True)
             start = current.info.voiceStartIndex
             end = next.info.voiceStartIndex
+            # Note: `start` might equal `end`, and `list` handles that correctly.
             current.info.voiceLineIds = list(range(start, end))
             bar.update(1)
 
+        # The last cell is special, because there is no next cell to use as the
+        # end index.
         lastCell = self.getCell(cellsInVoiceOrder[-1], silenceWarning=True)
         bar.desc = lastCell.name
         start = lastCell.info.voiceStartIndex
@@ -590,12 +799,18 @@ class Game:
         lastCell.info.voiceLineIds = list(range(start, end))
         bar.update(1)
 
+        # Now handle duplicate cells. Copy the voice lines into their underworld
+        # counterpart.
         for name in self.cellDuplicateNames():
             bar.desc = name
             self.getCell(name, False).info.voiceLineIds = self.getCell(name, True).info.voiceLineIds
             bar.update(1)
 
     def export(self, root):
+        """
+        Exports all of the game's data into the directory path `root`. The `root`
+        path MAY end in `/`, it is not required.
+        """
         self.assignVoiceLines()
         if root[-1] != "/":
             root += "/"
@@ -611,6 +826,11 @@ class Game:
                 cell.export(underworldFolder, self)
     
     def _exportCommonData(self, commonRoot):
+        """
+        Exports all of the game's common data (shared by all cells) to the
+        directory path `commonRoot`. ASSUMES that commonRoot does not end
+        in `/`.
+        """
         os.makedirs(commonRoot + "/zelda", exist_ok=True)
         castJson = {
             "zeldaActor": self.zeldaActor,
@@ -641,12 +861,36 @@ class Game:
         #    
 
     def _exportVoiceLine(self, globalId: int, filename: str):
+        """
+        Encodes a single voice line as a WAV file, by its global ID value.
+
+        Used by `Cell` to export voice lines, because `Game` retains the actual
+        audio data streams.
+        """
         file = self._voiceFiles.subFiles[globalId]
         sectors = self._voiceFiles.realFile.sectors[file.blockOffset:]
         foundFile = saveSoundFile(sectors, 1 << (file.channel & 0x7F), filename)
         assert foundFile, (globalId, filename, file.__dict__)
 
 class Attack:
+    """
+    The sprites and metadata to define an attack, its projectile actors, and
+    how they're animated.
+    """
+    # The item/inventory ID for the weapon/spell.
+    id: int
+    # The name of the weapon/spell. This list is manual, the names aren't in
+    # the raw data.
+    name: str
+    # The actor description for the projectile.
+    desc: "ActorDescription"
+    # The commands that spawn the projectiles and animate them. We still don't
+    # know what the commands do, exactly.
+    commands: List[int]
+    # Weapons can share metadata with other weapons. This contains the "parent"
+    # or original weapon's name.
+    sharedWithZeldaWeapon: Optional[str]
+
     def __init__(self, desc: "ActorDescription", id: int, commands: List[int], sharedWithZeldaWeapon: Optional[str] = None):
         self.id = id
         self.name = SPELL_LOOKUP[id]
@@ -655,12 +899,52 @@ class Attack:
         self.sharedWithZeldaWeapon = sharedWithZeldaWeapon
 
 class Actor:
+    """
+    The metadata for a single instance of an ActorDescription. This is what has
+    an (x, y) position, health, etc.
+
+    A copy of this structure lives in RAM during the game, and is used for all
+    entity state. So a lot of fields don't make sense in a serialized format, like
+    timers, pointers, etc.
+    """
+
+    # The index of the ActorDescription for this actor.
+    descIndex: int
+    # Starting coords for the actor.
+    spawnCoords: Coords
+    # Starting health for the actor.
+    health: int
+    # Unknown fields. These are most likely not just runtime stuff - I *think*
+    # all of these are nonzero for some actor somewhere. I *think* I already
+    # checked that. But I don't remember which actor descriptions, or what
+    # values they have.
+    unk_0x24: int
+    unk_0x28: int
+    unk_0x30: int
+    unk_0x32: int
+    unk_0x34: int
+    unk_0x35: int
+    # Facing direction. "TELEPORT" sounds like a weird direction, but it's the
+    # same enum as room exits.
+    direction: Literal["UP", "RIGHT", "DOWN", "LEFT", "TELEPORT"]
+    # The "animation type" for the actor. This type governs how sprites are
+    # updated each frame - whether they follow a set path, if they loop an
+    # animation, or if they wander around, or several other options. This
+    # could also be called "actor type", but that's too broad.
+    animationType: str
+    # The description for this actor.
+    description: Optional["ActorDescription"]
+    # The animation state for this actor.
+    animation: Optional["Animation"]
+
     def __init__(self, stream: StructStream):
         assert len(stream) == 54, len(stream)
         
+        # Pointers used at runtime
         pointers = stream.takeRaw(4 * 6)
         assert pointers == b'\0' * (4 * 6), pointers
 
+        # The rest of the non-pointer fields
         direction, animationType, frame, self.descIndex = stream.take("HHbB")
         self.spawnCoords = Coords.fromStream(stream, xFirst=False)
         self.health, self.unk_0x24, iframeState = stream.take("HHH")
@@ -693,6 +977,32 @@ class Actor:
         return ret
 
 class ActorDescription:
+    size: Coords
+    groupCount: int
+    maxHealth_maybe: int
+    useCostOrDefense: int
+    baseDamageOrPurchasePrice_maybe: int
+    collisionSamplePoints: List[Coords]
+    bonusDamage: int
+    unk_0x2b: int
+    unk_0x2c: int
+    canUseProjectiles: str
+    type_maybe: str
+    lootDropped: str
+    groupCount: int
+    maxHealth_maybe: int
+    useCostOrDefense: int
+    unk_0x14: int
+    unk_0x15: int
+    weakToSpell: str
+    interactsWithItem: str
+    groups: Optional[List["SpriteGroup"]]
+    scripts: Optional["ScriptSet"]
+    unusedSpritePointer: Optional[int]
+    unusedGroups: List["SpriteGroup"]
+    _cachedHashOfGroups: Optional[int]
+    commonName: Optional[str]
+
     def __init__(self, stream: StructStream):
         assert len(stream) == 46
 
@@ -1318,6 +1628,11 @@ class Cell:
 
 
     def _prettyPrintScripts(self) -> str:
+        """
+        Format this cell's scripts in a python-like file. It's very close
+        to python, and benefits from syntax highlighting, but it's not actually
+        executable.
+        """
         ret = "# This is not real python, but approxiamates it.\n\n"
         for i, desc in enumerate(self.descriptions):
             if desc.scripts.isEmpty():

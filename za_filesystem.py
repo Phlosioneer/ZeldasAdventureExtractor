@@ -9,14 +9,36 @@ if TYPE_CHECKING:
 # Resource Tree Format
 
 class ResourceTree:
+    """
+    The base class for all resource tree nodes. This class also has the recommended
+    method of parsing a resource tree, `parseFromStream`.
+
+    This is TECHNICALLY not an abstract class! It can be constructed and returned
+    by `parseFromStream` for unknown `tag` values.
+    """
+
+    # The tag indicates which type of resource tree node this is.
+    tag: Union[0, 1, 2]
+    # The size, in bytes, of all data that is part of THIS node (not child
+    # nodes). The definition is weird and flexible because it's not actually
+    # used for anything.
+    #
+    # Note that `size` is sometimes very weird for ResourceTreeSet nodes in
+    # particular.
+    size: int
+
     def __init__(self, stream: StructStream):
         self.tag, self.size = stream.take("II")
-        self.tag: int
-        self.size: int
     
     # Static
     def parseFromStream(stream: StructStream) \
         -> Union["ResourceTreeNode", "ResourceTreeArray", "ResourceTreeSet", Self]:
+        """
+        Parse a resource tree from data. This method takes care of parsing the `tag`
+        to figure out which ResourceTree subclass to create.
+
+        If the tag is not recognized, it returns the base class.
+        """
         
         tag = stream.peek("I")
         if tag == 0:
@@ -29,22 +51,37 @@ class ResourceTree:
             print("Unknown tag type:", tag)
             return ResourceTree(stream)
     
-    def simplify(self):
+    def simplify(self) -> Union[dict, list]:
+        """
+        Convert this node and all its children into json-serializable types.
+        """
+
+        # Abstract method
         raise NotImplementedError()
 
 class ResourceTreeNode(ResourceTree):
     """
-    The Tree part of the Resource Tree.
+    The Tree part of the Resource Tree. It's named poorly.
 
     The node's children use either names or numbers for access. Children
     are usually stored immediately after the node in memory, but this
-    is not required.
+    is not required. Note that 
 
-    This node has one or two immediate children: an optional Set node
+    Internally, this node has two "immediate" children: an optional Set node
     containing ascii names, and a mandatory Set node with the actual
     children nodes. While Set nodes generally contain arbitrary bytes,
-    the children Set node will always contain ResourceTree objects.
+    the children Set node will always contain ResourceTree objects. This
+    is an implementation detail and these "immedate" children are hidden.
+
+    The children are ALWAYS ResourceTree nodes, a limitation that leads
+    to raw data being stored as arrays with a size of 1.
     """
+
+    # If true, `children` uses `str` keys. If false, it uses number keys.
+    hasNames: bool
+    # The children of this node in the tree. Keys are either all numbers, or
+    # all strings. They're almost alway strings.
+    children: Union[Dict[int, ResourceTree], Dict[str, ResourceTree]]
 
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
@@ -53,26 +90,43 @@ class ResourceTreeNode(ResourceTree):
         
         originalStream = originalStream.takeFork(self.size)
         
+        # The two main parts of the node are the list of names and the list of
+        # children data streams. childCount CAN be used for parsing these lists,
+        # but the name list is a full ResourceTreeSet with its own length value,
+        # so it wasn't necessary.
         childCount, nameListNodeOffset, childListNodeOffset = stream.take("III")
         #print("root", childCount, nameListNodeOffset, childListNodeOffset)
+        
         nameListStream = originalStream.copy().skip(nameListNodeOffset)
         childListStream = originalStream.copy().skip(childListNodeOffset)
+        
+        # I honestly don't know if this is necessary anymore. It used to be
+        # important for the `stream` to be correctly sized (to find hidden/
+        # unused data) but I don't think stream length is used for anything now.
         if nameListNodeOffset < childListNodeOffset:
             nameListStream = nameListStream.takeFork(childListNodeOffset - nameListNodeOffset)
         else:
             childListStream = childListStream.takeFork(nameListNodeOffset - childListNodeOffset)
         
-            
+        # Parse the child list first, since it's always present.
         childListNode = ResourceTreeSet(childListStream)
+
+        # Parse all of the children recursively.
         children = [ResourceTree.parseFromStream(s) for s in childListNode.elements]
         
+        # Check if there is a name list.
         if nameListNodeOffset == 0:
+            # No, use numbers.
             names = list(range(len(children)))
+            self.hasNames = False
         else:
+            # Yes, parse the list then decode the data as null-terminated ascii strings.
             nameListNode = ResourceTreeSet(nameListStream)
             names = [s.copy().takeNullTermString().decode('ascii') for s in nameListNode.elements]
+            self.hasNames = True
         
-        
+        # Combine the name list and child list into a single dict. Could probably do
+        # something fancy with `zip()` and iterators. Whatever.
         self.children: Dict[str, ResourceTree] = {}
         for i in range(len(names)):
             self.children[names[i]] = children[i]
@@ -97,6 +151,13 @@ class ResourceTreeSet(ResourceTree):
     other ResourceTree objects, there are some Sets with data that is
     not contiguous with the object definition.
     """
+
+    # Offset to the start of the array-of-offsets to element data.
+    listOffset: int
+    # Offset to the start of element data.
+    baseOffset: int
+    # Child elements as raw data.
+    elements: List[StructStream]
 
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
@@ -153,6 +214,10 @@ class ResourceTreeArray(ResourceTree):
     Although not required, the data always immediately follows the
     object definition.
     """
+    elementCount: int
+    elementSize: int
+    elements: List[StructStream]
+
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
         ResourceTree.__init__(self, stream)
@@ -163,9 +228,6 @@ class ResourceTreeArray(ResourceTree):
         self.elementCount, self.elementSize, offset = stream.take("III")
         elementData = originalStream.takeFork(self.size).skip(offset)
         self.elements: List[StructStream] = [elementData.takeFork(self.elementSize) for _ in range(self.elementCount)]
-    
-        self.elementCount: int
-        self.elementSize: int
 
     def simplify(self) -> list:
         return self.elements
@@ -174,6 +236,10 @@ class ResourceTreeArray(ResourceTree):
 # Filesystem built on top of Resource Tree Format
 
 class ResourceMap:
+    realFile: "CdiFile"
+    subFiles: Dict[str, "ResourceMapFileEntry"]
+    sortedFiles: List[str]
+
     def __init__(self, stream: StructStream, realFile: "CdiFile"):
         self.realFile = realFile
         
@@ -243,11 +309,19 @@ class ResourceMap:
         
     
 class ResourceMapFileEntry:
+    name: str
+    channel: int
+    blockOffset: int
+    sectors: List["CdiSector"]
+    nextFile: Optional[Self]
+    videoRecords: List[int]
+    audioRecords: List[int]
+    dataRecords: List[int]
+    _cachedRecordData: Dict[str, Dict[int, bytes]]
+    
     def __init__(self, name: str, stream: StructStream):
         self.name = name
         self.channel, self.blockOffset = stream.take("HI")
-        self.channel: int
-        self.blockOffset: int
         self.sectors: List["CdiSector"] = []
         self.nextFile: Optional[Self] = None
         self.videoRecords = []
