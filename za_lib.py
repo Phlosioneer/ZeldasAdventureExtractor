@@ -12,8 +12,8 @@ from struct_stream import StructStream
 import cdi_filesystem
 from cdi_images import dyuvToRGB, rl7ToRGB
 from cdi_audio import saveSoundFile
-from za_filesystem import ResourceTree, ResourceMap, \
-    ResourceMapFileEntry, ResourceTreeSet
+from za_filesystem import ResourceTree, ResourceFileSystem, \
+    ResourceFileSystemFolder, ResourceTreeSet
 from za_images import decompressSprite, unpackPointerArray, unpackSpriteTree,\
     getClut, convertClutToRgba, PointerArray
 from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
@@ -249,17 +249,17 @@ class Game:
     _gameData: cdi_filesystem.CdiFileSystem
     
     # `zelda.rtf`
-    _mainFile: ResourceMap
+    _mainFile: ResourceFileSystem
     # `zelda_rl.rtf`
-    _zeldaRlFiles: ResourceMap
+    _zeldaRlFiles: ResourceFileSystem
     # `over.rtf`
-    _overFiles: ResourceMap
+    _overFiles: ResourceFileSystem
     # `under.rtf`
-    _underFiles: ResourceMap
+    _underFiles: ResourceFileSystem
     # `zelda_audio.rtf`
-    _audioFiles: ResourceMap
+    _audioFiles: ResourceFileSystem
     # `zelda_voice.rtf`
-    _voiceFiles: ResourceMap
+    _voiceFiles: ResourceFileSystem
 
 
     def __init__(self, dataFileName: str):
@@ -270,7 +270,7 @@ class Game:
 
         self._gameData = cdi_filesystem.loadCdiImageFile(dataFileName)
         mainMapStream = StructStream(self._gameData.files["zelda.mapres"].getBytes(), endianPrefix=">")
-        self._mainFile = ResourceMap(mainMapStream, self._gameData.files["zelda.rtf"])
+        self._mainFile = ResourceFileSystem(mainMapStream, self._gameData.files["zelda.rtf"])
         self._zeldaRlFiles = self._parseSubFile("rmap", "zelda_rl.rtf")
         self._overFiles = self._parseSubFile("omap", "over.rtf")
         self._underFiles = self._parseSubFile("umap", "under.rtf")
@@ -420,11 +420,11 @@ class Game:
         commands = [s.take("I") for s in weaponData.children["wp_cmds"].elements]
         return Attack(desc, id, commands, sharedWithWeapon)
 
-    def _parseSubFile(self, mapSubfileName, realFileName) -> ResourceMap:
+    def _parseSubFile(self, mapSubfileName, realFileName) -> ResourceFileSystem:
         """Helper function to apply resource maps to real files."""
         map = self._mainFile.subFiles[mapSubfileName].getBytes()
         stream = StructStream(map, endianPrefix=">")
-        return ResourceMap(stream, self._gameData.files[realFileName])
+        return ResourceFileSystem(stream, self._gameData.files[realFileName])
     
     def _parseSpriteNames(self):
         """
@@ -667,7 +667,7 @@ class Game:
 
         bar.close()
     
-    def _parseCell(self, file: ResourceMapFileEntry, name: str, isOverworld: bool) -> "Cell":
+    def _parseCell(self, file: ResourceFileSystemFolder, name: str, isOverworld: bool) -> "Cell":
         """
         Do the work of actually parsing a cell. This function DOES NOT add
         the parsed cell to any lists/caches!
@@ -1343,7 +1343,7 @@ class AnimationCommand:
 
 class Animation:
     def __init__(self, vectorStream: StructStream, tableStream: StructStream):
-        self.vectorUnkCoord = Coords.fromStream(vectorStream)
+        self.vectorUnkCoord_maybeStart = Coords.fromStream(vectorStream)
         self.error = False
         tableSize: int = vectorStream.take("H")
         pointer1, pointer2 = vectorStream.take("II")
@@ -1389,7 +1389,7 @@ class Animation:
         return ret
 
 class Cell:
-    def __init__(self, subFile: ResourceMapFileEntry, name: str, isOverworld: bool):
+    def __init__(self, subFile: ResourceFileSystemFolder, name: str, isOverworld: bool):
         self.name = name
 
         self.info = CellInfo(subFile.getRecord(2, kind="data"), isOverworld)
@@ -1438,7 +1438,7 @@ class Cell:
             if "wp_cmds" in tree.children:
                 self._weaponData = tree.children["wp_cmds"]
         
-    def _parseSprites(self, subFile: ResourceMapFileEntry):
+    def _parseSprites(self, subFile: ResourceFileSystemFolder):
         self.rawPalette = getClut(subFile.getRecord(7, kind="data"))
         self.palette = convertClutToRgba(self.rawPalette, indices=[0, 4])
 
@@ -1462,7 +1462,7 @@ class Cell:
             
             self.unusedSpriteGroups = tree.elements[len(self.descriptions):]
 
-    def _parseScripts(self, subFile: ResourceMapFileEntry):
+    def _parseScripts(self, subFile: ResourceFileSystemFolder):
         scriptFile = subFile.getRecord(6, kind="data")
         scriptFileTree = ResourceTree.parseFromStream(StructStream(scriptFile, endianPrefix=">"))
         for desc, tree in zip(self.descriptions, scriptFileTree.children.values()):
@@ -1488,12 +1488,12 @@ class Cell:
                     sublist.append([s.takeAll() for s in set.elements])
                 self.extraScriptData.append(sublist)
 
-    def _parseBackground(self, subFile: ResourceMapFileEntry):
+    def _parseBackground(self, subFile: ResourceFileSystemFolder):
         colorStream = StructStream(subFile.getRecord(0, kind="data"), endianPrefix=">")
         self.backgroundInitialColors = [colorStream.take("3B") for _ in range(240)]
         self.background = dyuvToRGB(subFile.getRecord(0, kind="video"), 384, 240, self.backgroundInitialColors)
     
-    def _parseCollisionData(self, subFile: ResourceMapFileEntry):
+    def _parseCollisionData(self, subFile: ResourceFileSystemFolder):
         collisionMap = subFile.getRecord(1, kind="video")
         # The 4 index comes from code.
         self.collisionImage = rl7ToRGB(collisionMap, self.rawPalette, emptySpaceColorIndex=4)

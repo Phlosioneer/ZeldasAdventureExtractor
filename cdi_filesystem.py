@@ -8,7 +8,68 @@ from tqdm import tqdm_notebook as tqdm
 from struct_stream import StructStream
 
 class CdiSector:
+	"""
+	The smallest unit of data that the CDI's OS and built-in functions recognize.
+	"""
+
+	# The underlying format is a CD, so position is tracked as "minutes" and
+	# "seconds", and "frames" within seconds. So these three numbers together
+	# define a specific location on the disk.
+	minute: int
+	second: int
+	frame: int
+
+	# The mode for the sector, as defined in the CDI specification (Green Book,
+	# page II-21). Mode 1 is for CD-DA audio sectors, Mode 2 is for CD-I data
+	# sectors (which my contain audio).
+	mode: Literal[1, 2]
+
+	# `None` if this is a CD-DA sector. Otherwise, this is the ID of the file that
+	# this sector belongs to in the CDI filesystem.
+	file: Optional[int]
+
+	# `None` if this is a CD-DA sector. Otherwise, this is the channel for this
+	# sector (see Green Book, page AII-2 (about p870) for more info).
+	channel: Optional[int]
+
+	# `None` if this is a CD-DA sector. Otherwise, this contains info about the
+	# encoding of audio and video, like bit sample depth, sampling frequency,
+	# mono or stereo audio, resolution, color mode, etc. (See Green Book, AII-6
+	# (about p874) for more info).
+	coding: Optional[int]
+
+	# `None` if this is a CD-DA sector. Otherwise, True if this is the last sector
+	# in its file.
+	isEof: Optional[bool]
+
+	# `None` if this is a CD-DA sector. Otherwise, True if this is a real-time
+	# sector, which triggers special handling in the CDI operating system.
+	isRealtime: Optional[bool]
+
+	# `None` if this is a CD-DA sector. Otherwise, this is the form of the sector's
+	# data. Form 1 has more data, while Form 2 has more error correction.
+	form: Optional[Literal[1, 2]]
+
+	# `None` if this is a CD-DA sector. Otherwise, True if an interrupt should
+	# be sent to the application when this sector is read. Used to synchronize
+	# code with video and audio cues.
+	isTrigger: Optional[bool]
+
+	# `None` if this is a CD-DA sector. Otherwise, this is the kind of data stored
+	# in the sector. Note that "data" sectors can contain audio and sprites,
+	# they just need to be handled manually by the application.
+	kind: Optional[Literal["empty", "data", "audio", "video"]]
+
+	# `None` if this is a CD-DA sector. Otherwise, True if this is the last sector
+	# in a "record", which is a sub-part of a file. 
+	isEndOfRecord: Optional[bool]
+
+	# The entire audio data region if this is a CD-DA sector, or the meaningful data
+	# region (omitting error correction) for a CD-I sector.
+	data: bytes
+
 	def __init__(self, metadata: dict, rawData: bytes):
+		# Save parts of the header that are relevant.
 		self.minute: int = metadata["minute"]
 		self.second: int = metadata["second"]
 		self.frame: int = metadata["frame"]
@@ -19,7 +80,10 @@ class CdiSector:
 			self.mode = 2
 		
 		if self.mode == 2:
+			# The subheader is repeated to detect errors.
 			assert rawData[:4] == rawData[4:8]
+
+			# Parse the sub-header.
 			self.file = rawData[0]
 			self.channel = rawData[1]
 			submode = rawData[2]
@@ -40,11 +104,13 @@ class CdiSector:
 				self.kind = "video"
 			self.isEndOfRecord = submode & 0x01 != 0
 			
+			# Save the raw data, excluding the sub-header and error correction.
 			if self.form == 1:
 				self.data = rawData[8:8 + 2048]
 			else:
 				self.data = rawData[8:8 + 2324]
 		else:
+			# CD-DA sector. None of these fields have any meaning.
 			self.file = None
 			self.channel = None
 			self.coding = None
@@ -54,6 +120,8 @@ class CdiSector:
 			self.isTrigger = None
 			self.kind = None
 			self.isEndOfRecord = None
+
+			# Save the entire data area.
 			self.data = rawData
 	
 	def __repr__(self) -> str:
@@ -72,6 +140,27 @@ class CdiSector:
 		return ret + ")"
 
 class CdiVolumeDescriptor:
+	volumeName: str
+	size: int
+	charSet: bytes
+	volumesInAlbum: int
+	volumeSeqNumber: int
+	blockSize: int
+	pathTableSize: int
+	pathTableAddress: int
+	album: str
+	publisher: str
+	dataPrepPerson: str
+	applicationFileName: str
+	copyrightFileName: str
+	abstractFileName: str
+	biblioFileName: str
+	creationDateRaw: bytes
+	modificationDateRaw: bytes
+	expirationDateRaw: bytes
+	effectiveDateRaw: bytes
+	appData: bytes
+
 	def __init__(self, sector: CdiSector):
 		assert sector.mode == 2
 		assert sector.form == 1
@@ -106,6 +195,10 @@ class CdiVolumeDescriptor:
 		self.appData = s.skip(1).takeRaw(512)
 
 class CdiDirectory:
+	thisDescriptor: "CdiFile"
+	parentDescriptor: "CdiFile"
+	fileDescriptors: List["CdiFile"]
+
 	def __init__(self, sector: CdiSector):
 		s = StructStream(sector.data, endianPrefix=">")
 		
@@ -126,6 +219,25 @@ class CdiDirectory:
 			self.fileDescriptors.append(file)
 
 class CdiFile:
+	_cachedBytes: Optional[bytes]
+	exAttribs: int
+	startBlock: int
+	size: int
+	creationDate: datetime.datetime
+	isHidden: bool
+	interleaveRatio: List[int]
+	sequenceNumber: int
+	name: str
+	owner: dict
+	fileNumber: int
+	attributes: List[Literal[
+			"Owner Read", "Owner Execute", "Group Read",
+			"Group Execute", "World Read", "World Execute",
+			"CD-DA file", "Directory"]]
+	sectors: List[CdiSector]
+	blocks: List[bytes]
+	modules: Optional[List[dict]]
+	unusedBytes: Optional[bytes]
 	def __init__(self, stream: StructStream):
 		s = stream
 		mark = len(s)
@@ -167,11 +279,7 @@ class CdiFile:
 		self.fileNumber: int = s.skip(2).take("B")
 		s.skip(1)
 		
-		self.attributes: List[Literal[
-			"Owner Read", "Owner Execute", "Group Read",
-			"Group Execute", "World Read", "World Execute",
-			"CD-DA file", "Directory"
-				]] = []
+		self.attributes = []
 		if attributeFlags & 0x0001 != 0:
 			self.attributes.append("Owner Read")
 		if attributeFlags & 0x0004 != 0:

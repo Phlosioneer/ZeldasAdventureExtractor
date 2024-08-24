@@ -153,8 +153,10 @@ class ResourceTreeSet(ResourceTree):
     """
 
     # Offset to the start of the array-of-offsets to element data.
+    # Not meant for public use.
     listOffset: int
     # Offset to the start of element data.
+    # Not meant for public use.
     baseOffset: int
     # Child elements as raw data.
     elements: List[StructStream]
@@ -232,34 +234,83 @@ class ResourceTreeArray(ResourceTree):
     def simplify(self) -> list:
         return self.elements
 
-#######################
-# Filesystem built on top of Resource Tree Format
+class ResourceFileSystem:
+    """
+    Filesystem built on top of the Resource Tree format. I call it a filesystem
+    because it's a nested hierarchy of named multi-media data blobs of many various
+    formats. Filesystem is the best word for it; it's too diverse for just a single
+    "file format", and too nested for a "container file format" like MP4.
 
-class ResourceMap:
+    The first layer of the file system is a resource tree. The below assumes that
+    the resource tree is already parsed, and all of its indirection and offsets
+    are resolved. If this layer is not already parsed, it has some VERY strange
+    design choices, like how the name-to-children association is... recreated? Re-
+    invented? It sucks and no one would make a system like this from the ground up.
+
+    Building a file format inside of the CDI's file format makes a lot of sense.
+    The CDI's file format sucks; it's not granular enough, it doesn't have any
+    relation to sector/block types, and it can't be out-of-order for improved seek
+    efficiency. But this resource file system is bloated, clearly reusing code for
+    the sake of development time.
+
+    The root node is always a ResourceTreeNode node. It has these children:
+        `r`: An array/set of folder *definitions*. No file data is actually stored
+             in this area. It's just references to the `v`, `a`, and `d` arrays.
+             
+             "r" might be short for "references"? Maybe not, I'm not sure.
+        `l`: (Optional) An array/set with the names for the folders. If present,
+             this array has the same size as `r`.
+             
+             "l" is probably short for "labels".
+        `v`: (Optional) An array/set with video block indices. "v" is short
+             for "video".
+        `a`: (Optional) An array/set with audio block indices. "a" is short
+             for "audio".
+        `d`: (Optional) An array/set with data block indices. "d" is short
+             for "data".
+    
+    `v`, `a`, and `d` are each single-element ResourceTreeArray n
+    """
+    # Either a map of folder names, or a map of file indices. Should be renamed
+    # to "subFolders" but I'm not able to fully test/validate the refactoring.
+    subFiles: Union[Dict[str, "ResourceFileSystemFolder"],
+                    Dict[int, "ResourceFileSystemFolder"]]
+    # True if the folders have names, and subFiles is a Dict[str, ...]. False if
+    # there are no names, and subFiles is a Dict[int, ...].
+    hasNames: bool
+    # The underlying file object, as provided by the CDI format's understanding of
+    # files. That means this is a ".rtf" file.
     realFile: "CdiFile"
-    subFiles: Dict[str, "ResourceMapFileEntry"]
-    sortedFiles: List[str]
+    # Folders sorted by their first block index. Not for public use. Should be
+    # renamed to "sortedFolderNames" but I'm not able to fully test/validate the
+    # refactoring.
+    sortedFiles: List["ResourceFileSystemFolder"]
 
     def __init__(self, stream: StructStream, realFile: "CdiFile"):
         self.realFile = realFile
         
         root = ResourceTree.parseFromStream(stream).simplify()
         
-        #assert "l" in root, root
         assert "r" in root, root
+        
+        # Parse the labels, or generate number labels.
         if "l" in root:
-            subFileNames: List[str] = [s.peekNullTermString().decode('ascii') for s in root["l"]]
+            subFileNames: Union[List[str], List[int]] = [s.peekNullTermString().decode('ascii') for s in root["l"]]
         else:
             subFileNames = list(range(len(root["r"])))
-        self.subFiles: Dict[str, ResourceMapFileEntry] = {}
+        self.subFiles = {}
         
+        # Parse all of the folder definitions, and pair them with labels.
         for i, name in enumerate(subFileNames):
-            self.subFiles[name] = ResourceMapFileEntry(name, root["r"][i])
+            self.subFiles[name] = ResourceFileSystemFolder(name, root["r"][i])
         
+        # Sort the folders by their first block.
         subFileNames.sort(key=lambda f: self.subFiles[f].blockOffset)
         self.sortedFiles = [self.subFiles[name] for name in subFileNames]
         del subFileNames
         
+        # Compute folders' relations with each other, to help figure out sizes and
+        # check if there are any "gaps" with hidden/unused data.
         for i in range(len(self.sortedFiles) - 1):
             subFile = self.sortedFiles[i]
             nextSubFile = self.sortedFiles[i + 1]
@@ -272,19 +323,45 @@ class ResourceMap:
         #print(lastSubFile.name, "start", lastSubFile.blockOffset, "length", len(lastSubFile.sectors))
         
         def handleSizeArray(name: str):
+            """
+            The `v`, `a`, and `d` sections all have the same format, so this
+            function decodes each of them.
+            """
+            # FIXME: This function is subtly wrong. It stops looking for
+            # more files based on the sorting we did above, but we sorted by
+            # the lowest of *any* type, not by the lowest for *this* function's
+            # current type (stored in `name`). To be completely accurate, this
+            # function needs to re-sort the list of folders based on `name`. The
+            # function as written will produce the correct result assuming that
+            # each folder's v/a/d indices are all contiguous with each other.
+            #
+            # This subtle distinction also affects the "next folder" (`nextF`)
+            # calculation, so the range might not be right if folders interleave
+            # their files of different types.
+            #
+            # If something breaks, look at the two spots with `== 0xFFFF` in
+            # this function.
+
+            # Sanity check.
             if name not in root:
                 return
             
-            # Array of bytes
+            # Array with a single entry, which is just a blob of bytes.
             sizes = list(root[name][0].takeAll())
             #print("array", name, "sizes", sizes)
             
             for i in range(len(self.sortedFiles)):
+                # Get the start index for the range of files in this folder.
                 f = self.sortedFiles[i]
                 thisIndex = f._getSizeIndex(name)
                 if thisIndex == 0xFFFF:
+                    # No files of this type in this folder.
                     return
                 
+                # For the game, that's all the info it needs. But this script is
+                # looking for all the files in a folder, regardless of whether they
+                # are used or referenced. So look for the next folder, and if it
+                # exists, use its start index as this folder's end index.
                 if i == len(self.sortedFiles) - 1:
                     nextIndex = len(sizes)
                 else:
@@ -295,6 +372,7 @@ class ResourceMap:
                 
                 f._setSizes(name, sizes[thisIndex:nextIndex])
         
+        # Parse the folder contents for the 3 file types.
         handleSizeArray("v")
         handleSizeArray("a")
         handleSizeArray("d")
@@ -308,14 +386,22 @@ class ResourceMap:
         return ret
         
     
-class ResourceMapFileEntry:
+class ResourceFileSystemFolder:
+    # The name of the folder. Usually a map tile coordinate, but sometimes other
+    # values like "zinit".
     name: str
+    # The channel for all the files in this folder.
     channel: int
+    # The sector index for the first block.
     blockOffset: int
+    # The sectors
     sectors: List["CdiSector"]
     nextFile: Optional[Self]
+    # Block indices for each video record.
     videoRecords: List[int]
+    # Block indices for each audio record.
     audioRecords: List[int]
+    # Block indices for each data record.
     dataRecords: List[int]
     _cachedRecordData: Dict[str, Dict[int, bytes]]
     
@@ -338,7 +424,7 @@ class ResourceMapFileEntry:
         else:
             print("6-byte file descriptors found:", len(stream))
     
-    def getBytes(self, start = 0, end = None, kind = None):
+    def getBytes(self, start = 0, end = None, kind = None) -> bytes:
         if end == None:
             end = len(self.sectors)
         filtered = [s for s in self.sectors if kind == None or kind == s.kind]
