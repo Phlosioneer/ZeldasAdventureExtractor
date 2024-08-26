@@ -839,7 +839,7 @@ class Game:
             "weapons": self.weapons
         }
         with open(commonRoot + "/zelda/cast.json", "w") as f:
-            json.dump(castJson, f, default=_cellSerializer)
+            json.dump(castJson, f, default=_cellSerializer, indent=2)
 
         for i, group in enumerate(self.zeldaActor.description.groups):
             for j, sprite in enumerate(group.sprites):
@@ -871,6 +871,120 @@ class Game:
         sectors = self._voiceFiles.realFile.sectors[file.blockOffset:]
         foundFile = saveSoundFile(sectors, 1 << (file.channel & 0x7F), filename)
         assert foundFile, (globalId, filename, file.__dict__)
+
+    def exportCuriosities(self, curiositiesRoot):
+        """
+        Exports some useful or neat stats from the huge amount of exported data.
+        """
+        if curiositiesRoot.endswith("/"):
+            curiositiesRoot = curiositiesRoot[:-1]
+        os.makedirs(curiositiesRoot, exist_ok=True)
+        
+        self._exportCurioWeaknesses(curiositiesRoot)
+        self._exportCurioEnemyStats(curiositiesRoot)
+        
+    def _exportCurioWeaknesses(self, curiositiesRoot):
+        """
+        Exports a human-readable text file listing all the weaknesses for enemies.
+        """
+        with open(curiositiesRoot + "/weaknesses.txt", "w") as f:
+            for cell in self.cells():
+                for desc in cell.descriptions:
+                    if desc.weakToSpell != "None" and desc.bonusDamage != 0:
+                        message = "On {} {} is weak to {} and it deals this much bonus damage: {}\n".format(cell.name, desc.commonName, desc.weakToSpell, desc.bonusDamage)
+                        f.write(message)
+        
+    def _exportCurioEnemyStats(self, curiositiesRoot):
+        """
+        Exports a human-readable text file listing all the combat stats for enemies.
+        """
+
+        @dataclass(eq=True, frozen=True)
+        class StatBlock:
+            health: Optional[int]
+            damage: int
+            defense: int
+            weakness: str
+            bonusDamage: int
+            loot: str
+
+            def __repr__(self):
+                notableStats = []
+                notableStats.append("damage={}".format(self.damage))
+                if self.defense != 0:
+                    notableStats.append("defense={}".format(self.defense))
+                if self.health == None:
+                    notableStats.append("health=(Not Spawned, or Projectile)")
+                else:
+                    notableStats.append("health={}".format(self.defense))
+                if self.weakness != "None" or self.bonusDamage != 0:
+                    notableStats.append("weakness={}".format(self.weakness))
+                    notableStats.append("bonusDamage={}".format(self.bonusDamage))
+                if self.loot != "Nothing":
+                    notableStats.append("loot={}".format(self.loot))
+                return "[{}]".format(", ".join(notableStats))
+
+        stats = {}
+
+        for cell in self.cells():
+            for actor in cell.actors:
+                name = actor.description.commonName
+                if name not in stats:
+                    stats[name] = {}
+
+                hasWeakness = actor.description.weakToSpell != "None"
+                statBlock = StatBlock(
+                    health=actor.health,
+                    damage=actor.description.baseDamageOrPurchasePrice_maybe,
+                    defense=actor.description.useCostOrDefense,
+                    weakness=actor.description.weakToSpell,
+                    bonusDamage=actor.description.bonusDamage,
+                    loot=actor.description.lootDropped
+                )
+
+                if statBlock not in stats[name]:
+                    stats[name][statBlock] = []
+                if cell.name not in stats[name][statBlock]:
+                    stats[name][statBlock].append(cell.name)
+
+            for desc in cell.descriptions:
+                isUsed = False
+                for actor in cell.actors:
+                    if actor.description == desc:
+                        isUsed = True
+                        break
+                if isUsed:
+                    continue
+                
+                if desc.commonName not in stats:
+                    stats[desc.commonName] = {}
+
+                statBlock = StatBlock(
+                    health=None,
+                    damage=desc.baseDamageOrPurchasePrice_maybe,
+                    defense=desc.useCostOrDefense,
+                    weakness=desc.weakToSpell,
+                    bonusDamage=desc.bonusDamage,
+                    loot=desc.lootDropped
+                )
+                if statBlock not in stats[desc.commonName]:
+                    stats[desc.commonName][statBlock] = []
+                if cell.name not in stats[desc.commonName][statBlock]:
+                    stats[desc.commonName][statBlock].append(cell.name)
+
+        with open(curiositiesRoot + "/enemyStats.txt", "w") as f:
+            for name in sorted(stats):
+                #if name.startswith("enemy.") or "projectile" in name:
+                if len(stats[name]) == 1:
+                    f.write("{} always has the stats:\n".format(name))
+                    f.write("\t{} on cells {}\n".format(
+                        list(stats[name].keys())[0],
+                        ", ".join(list(stats[name].values())[0])
+                        ))
+                else:
+                    f.write("{} has different stats on different cells:\n".format(name))
+                    for statBlock, cells in stats[name].items():
+                        f.write("\t{} on cells {}\n".format(statBlock, ', '.join(cells)))
 
 class Attack:
     """
@@ -1579,7 +1693,7 @@ class Cell:
             "descriptions": self.descriptions,
         }
         with open(folder + "cast.json", "w") as f:
-            json.dump(castJson, f, default=_cellSerializer)
+            json.dump(castJson, f, default=_cellSerializer, indent=2)
         
         convertedPalette = ["#" + self.rawPalette[i:i+3].hex() for i in range(0, len(self.palette), 3)]
         cellJson = {
@@ -1590,7 +1704,7 @@ class Cell:
         if self.info.hasPaletteCycling:
             cellJson["paletteCycles"] = self.info.cyclers
         with open(folder + "cell.json", "w") as f:
-            json.dump(cellJson, f, default=_cellSerializer)
+            json.dump(cellJson, f, default=_cellSerializer, indent=2)
 
     def _exportScripts(self, folder: str):
         with open(folder + "scripts.py", "w") as f:

@@ -4,3 +4,6 @@ export/*
 cycles/*
 Zeldas Adventure (Europe)/*
 Zeldas Adventure (Europe).dat
+
+# Ignore export files (manually named this way)
+exportZeldasAdventure*
