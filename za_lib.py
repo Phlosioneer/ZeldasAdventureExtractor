@@ -2,7 +2,7 @@
 import json
 import os
 import copy
-from typing import List, Tuple, Dict, Optional, Literal, Self, Iterator, TYPE_CHECKING
+from typing import List, Tuple, Dict, Union, Optional, Literal, Self, Iterator, TYPE_CHECKING
 from dataclasses import dataclass, asdict
 
 from tqdm import tqdm_notebook as tqdm
@@ -13,7 +13,7 @@ import cdi_filesystem
 from cdi_images import dyuvToRGB, rl7ToRGB
 from cdi_audio import saveSoundFile
 from za_filesystem import ResourceTree, ResourceFileSystem, \
-    ResourceFileSystemFolder, ResourceTreeSet
+    ResourceFileSystemFolder, ResourceTreeNode, ResourceTreeSet
 from za_images import decompressSprite, unpackPointerArray, unpackSpriteTree,\
     getClut, convertClutToRgba, PointerArray
 from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
@@ -80,6 +80,19 @@ PROJECTILE_FIELD_LOOKUP = {
     48: "Allow(48)",
     49: "Allow(49)",
     52: "Allow(52)"
+}
+
+BOSS_COMMAND_NAMES = {
+    0: "Loop",
+    1: "AdvanceToNextActor",
+    2: "SetStartPosition",
+    3: "SetLoopStartIndex",
+    # 4 has two possible names depending on paramHigh
+    5: "MoveToGoal",
+    6: "UseAttack",
+    7: "SetAnimationGroup",
+    8: "SetIsInvulnerable",
+    9: "PlaySound"
 }
 
 @dataclass(eq=True, frozen=True)
@@ -176,7 +189,65 @@ class BoundingBox:
     
     def height(self):
         return self.maxY - self.minY
-    
+
+
+class BossCommand:
+    name: str
+    paramHigh: int
+    paramLow: int
+    namedParams: dict[str, Union[int, bool]]
+
+    def __init__(self, stream: StructStream):
+        self.namedParams = {}
+
+        unused, command, self.paramHigh, self.paramLow = stream.fork().take("BBBB")
+        self.paramLow -= 0x80
+        self.paramHigh -= 0x80
+
+        assert unused == 0, unused
+        if command == 4 and self.paramHigh == 0:
+            self.name = "AnimateInPlace"
+        elif command == 4:
+            self.name = "StepNormalAI_extremelyComplicated"
+        else:
+            self.name = BOSS_COMMAND_NAMES[command]
+        
+        if self.name in ["SetStartPosition", "MoveToGoal"]:
+            self.namedParams["x"] = self.paramHigh * 2
+            self.namedParams["y"] = self.paramLow * 2
+        elif self.name == "Loop":
+            assert self.paramLow in [0, -128], self.paramLow
+            assert self.paramHigh in [0, -128], self.paramHigh
+        elif self.name == "StepNormalAI_extremelyComplicated":
+            self.namedParams["frames"] = self.paramLow
+            if self.paramHigh != 1:
+                self.namedParams["unusualHighByte"] = self.paramHigh
+        else:
+            if self.paramHigh != 0:
+                self.namedParams["unusedHighByte"] = self.paramHigh
+
+            if self.name == "SetIsInvulnerable":
+                assert self.paramLow in [0, 1], self.paramLow
+                self.namedParams["invulnerable"] = self.paramLow != 0
+            elif self.name == "SetAnimationGroup":
+                self.namedParams["group"] = self.paramLow
+            elif self.name == "PlaySound":
+                self.namedParams["index"] = self.paramLow
+            elif self.name in "AnimateInPlace":
+                self.namedParams["frames"] = self.paramLow
+            else:
+                if self.paramLow != 0:
+                    self.namedParams["unusedLowByte"] = self.paramLow
+
+    def __repr__(self) -> str:
+        params = ", ".join(map(lambda entry: f"{entry[0]}={entry[1]}", self.namedParams.items()))
+        return f"BossCommand({self.name}, {params})"
+
+    def toPseudocode(self) -> str:
+        params = ", ".join(map(lambda entry: f"{entry[0]}={entry[1]}", self.namedParams.items()))
+        return f"{self.name}({params})"
+
+
 def _cellSerializer(o):
     """
     Function to extend json.dump for more types.
@@ -688,7 +759,7 @@ class Game:
             assert location in self.spriteNameReverseLookup, location
 
             desc.commonName = self.spriteNameReverseLookup[location]
-        return ret            
+        return ret
     
     def getSpritesByName(self, name: str, variant: int = 0) -> "SpriteGroup":
         """
@@ -824,6 +895,10 @@ class Game:
                 cell.export(overworldFolder, self)
             else:
                 cell.export(underworldFolder, self)
+        print("Exporting curiosities")
+        self._exportCuriosities(root + "curiosities")
+        print("Exporting copy of scripts to separate dir")
+        self.exportJustScripts(root + "scripts")
     
     def _exportCommonData(self, commonRoot):
         """
@@ -872,7 +947,7 @@ class Game:
         foundFile = saveSoundFile(sectors, 1 << (file.channel & 0x7F), filename)
         assert foundFile, (globalId, filename, file.__dict__)
 
-    def exportCuriosities(self, curiositiesRoot):
+    def _exportCuriosities(self, curiositiesRoot):
         """
         Exports some useful or neat stats from the huge amount of exported data.
         """
@@ -1011,6 +1086,66 @@ class Attack:
         self.desc = desc
         self.commands = commands
         self.sharedWithZeldaWeapon = sharedWithZeldaWeapon
+
+class BossData:
+    commands: list[BossCommand]
+    weapon: Attack
+    startPosition: Optional[Coords]
+    loopStartIndex: Optional[int]
+    _startPositionCommand: Optional[BossCommand]
+
+    def __init__(self, subfile: ResourceTreeNode, boss: "ActorDescription", projectile: "ActorDescription"):
+        assert "kp_init" in subfile.children
+        assert "wp_cmds" in subfile.children
+        self.commands = list(map(BossCommand, subfile.children["kp_init"].elements))
+
+        self.startPosition = None
+        self.loopStartIndex = None
+        self._startPositionCommand = None
+
+        assert self.commands[0].name == "AdvanceToNextActor"
+        assert self.commands[-1].name == "Loop"
+        for i in range(1, len(self.commands) - 1):
+            command = self.commands[i]
+            assert command.name != "AdvanceToNextActor"
+            assert command.name != "Loop"
+            if command.name == "SetStartPosition":
+                assert self.startPosition == None
+                self.startPosition = Coords(command.namedParams["x"], command.namedParams["y"])
+                self._startPositionCommand = command
+            elif command.name == "SetLoopStartIndex":
+                #assert self.loopStartIndex == None
+                self.loopStartIndex = i + 1
+        
+        # TODO: Parse weapon
+    
+    def toPseudocode(self) -> str:
+        code = "def bossAI():\n"
+        if self._startPositionCommand != None:
+            code += f"\t{self._startPositionCommand.toPseudocode()}\n"
+        
+        if self.loopStartIndex != None:
+            loop = self.commands[self.loopStartIndex:]
+        else:
+            loop = self.commands
+
+        code += "\twhile True:\n"
+        for command in loop:
+            if command.name == "Loop":
+                currentLine = "WasteOneFrame() # It takes one frame to reset the loop counter."
+            elif command.name in ["SetStartPosition", "AdvanceToNextActor", "SetStartPosition"]:
+                currentLine = f"WasteOneFrame() # Technically this is \"{command.toPseudocode()}\" but the command is skipped" \
+                + " inside the loop. It's only used by init code before any frames happen."
+            else:
+                currentLine = command.toPseudocode()
+            
+                if "unusualHighByte" in command.namedParams:
+                    currentLine += " # unusualHighByte: The code only checks for zero or nonzero. This script considers anything"\
+                    + " that isn't 0 or 1 (i.e. true or false) to be \"unusual\"."
+            code += f"\t\t{currentLine}\n"
+
+        
+        return code
 
 class Actor:
     """
@@ -1517,6 +1652,7 @@ class Cell:
     def _parseActors(self, data) -> Tuple[List["Actor"], List["ActorDescription"]]:
         tree = ResourceTree.parseFromStream(StructStream(data, endianPrefix=">"))
         self.actors = [Actor(s) for s in tree.children["sp_cast"].elements]
+        self.bossData: Optional[BossData] = None
         
         self._vectorData: Optional[StructStream] = None
         self._tableData: Optional[StructStream] = None
@@ -1551,6 +1687,14 @@ class Cell:
 
             if "wp_cmds" in tree.children:
                 self._weaponData = tree.children["wp_cmds"]
+            
+            if "kp_init" in tree.children:
+                boss_actors = [d for d in self.descriptions if d.type_maybe == "Boss"]
+                assert len(boss_actors) == 1, boss_actors
+                boss_actor = boss_actors[0]
+                boss_projectile = None
+
+                self.bossData = BossData(tree, boss_actor, boss_projectile)
         
     def _parseSprites(self, subFile: ResourceFileSystemFolder):
         self.rawPalette = getClut(subFile.getRecord(7, kind="data"))
@@ -1596,7 +1740,7 @@ class Cell:
         self.extraScriptData: List[List[List[bytes]]] = []
         if self.name != "gl6":
             for i in range(lastUsedIndex + 1, len(scriptFileTree.children)):
-                sublist: List[str] = []
+                sublist: List[List[bytes]] = []
                 set: ResourceTreeSet
                 for set in scriptFileTree.children[i].children.values():
                     sublist.append([s.takeAll() for s in set.elements])
@@ -1766,19 +1910,23 @@ class Cell:
         ret += self.scripts.prettyPrint("Cell")
 
         if len(self.vars) > 0:
-            ret += "# Local variables\n"
+            ret += "\n# Local variables\n"
             var: int
             for i, var in enumerate(self.vars):
                 ret += "local{} = {} # {}, {}\n".format(i, var, hex(var), repr(var.to_bytes(2, "big")))
         else:
-            ret += "# No local variables\n\n"
+            ret += "\n# No local variables\n"
 
         if len(self.extraScriptData) > 0:
-            ret += "# Extra script data\n"
+            ret += "\n# Extra script data\n"
             ret += "extraData = [\n"
             for sublist in self.extraScriptData:
                 ret += "\t{},\n".format(sublist)
             ret += "]\n"
+        
+        if self.bossData:
+            ret += "\n# Boss AI\n"
+            ret += self.bossData.toPseudocode()
         
         return ret
 
