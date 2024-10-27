@@ -2,8 +2,9 @@
 import json
 import os
 import copy
-from typing import List, Tuple, Dict, Union, Optional, Literal, Self, Iterator, Callable, Any
+from typing import List, Tuple, Dict, Union, Optional, Literal, Self, Iterator, Callable, Any, Type
 from dataclasses import dataclass, asdict
+from enum import Enum
 
 from tqdm import tqdm_notebook as tqdm
 import PIL.Image
@@ -16,85 +17,17 @@ from za_filesystem import ResourceTree, ResourceFileSystem, \
     ResourceFileSystemFolder, ResourceTreeNode, ResourceTreeSet
 from za_images import decompressSprite, unpackPointerArray, unpackSpriteTree,\
     getClut, convertClutToRgba, PointerArray
-from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
+from za_constants import BOSS_COMMAND_PARAM_NAMES, SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP, ActorScriptType, ActorType, AnimationType, BossCommandType, CellScriptType, LootDropType, ProjectileField
 from za_scripts import ScriptSet
 
 # Compat for running scripts in both jupyter and console
 try:
-    display
+    display # type: ignore
 except NameError:
     def display(data):
         print(data)
 
-ANIMATION_TYPE_MAYBE_LOOKUP = {
-    "default": "UnknownType{}",
-    0: "Immobile",
-    2: "Enemy",
-    3: "AnimationActionsOnly",
-    4: "PushableBlock",
-    5: "Boss", # Not found in files, only applied at runtime.
-    6: "FloatingRaft",
-    7: "MovingRaft",
-    8: "DiagonalBouncingSprite",
-    9: "OrthoganalBouncingSprite",
-    50: "MagicShieldableHazzard",
-}
 
-ACTOR_TYPE_MAYBE_LOOKUP = {
-    "default": "UnknownType{}",
-    0: "Normal",
-    1: "EnemyOrSwitch",
-    2: "Loot",
-    4: "Hazzard",
-    5: "Boss"
-}
-
-ACTOR_SCRIPT_TYPE_LOOKUP = {
-    "default": "actorType{}",
-    0: "onDeathOrRaftRideFinished",
-    1: "onTouchOrPushBlockStoppedMoving",
-    2: "onPurchaseOrAnimationComplete",
-    3: "onHitOrIteractIntercept",
-    4: "onItemInteractOrSoundFileDone",
-    5: "onLoad_maybe"
-}
-
-CELL_SCRIPT_TYPE_LOOKUP = {
-    "default": "cellType{}",
-    0: "onEntry",
-    1: "onLeave",
-    2: "onTouchTrigger"
-}
-
-LOOT_DROP_TYPE_LOOKUP = {
-    0: "Nothing",
-    1: "BlueRupee",
-    2: "YellowRupee",
-    3: "Heart",
-    4: "Random"
-}
-
-# See `curiosities/Actor Desc Projectile Field.md` for more info.
-PROJECTILE_FIELD_LOOKUP = {
-    0: "Deny",
-    1: "Allow(1)",
-    48: "Allow(48)",
-    49: "Allow(49)",
-    52: "Allow(52)"
-}
-
-BOSS_COMMAND_NAMES = {
-    0: "loop",
-    1: "advanceToNextActor",
-    2: "setStartPosition",
-    3: "setLoopStartIndex",
-    # 4 has two possible names depending on paramHigh
-    5: "moveToGoal",
-    6: "useAttack",
-    7: "setAnimationGroup",
-    8: "setIsInvulnerable",
-    9: "playSound"
-}
 
 @dataclass(eq=True, frozen=True)
 class Coords:
@@ -116,6 +49,7 @@ class Coords:
     def __repr__(self):
         return "({}, {})".format(self.x, self.y)
 
+
 # eq + frozen allows this to be a dictionary key
 @dataclass(eq=True, frozen=True)
 class ActorDescLocation:
@@ -131,6 +65,7 @@ class ActorDescLocation:
     cell: str
     # The index of this description in the cell's actor description array.
     index: int
+
 
 @dataclass(eq=True, frozen=True)
 class TreeHeightRegion:
@@ -154,6 +89,7 @@ class TreeHeightRegion:
         maxCoords = Coords.fromStream(stream)
         height = stream.take("H")
         return TreeHeightRegion(minCoords, maxCoords, height)
+
 
 @dataclass
 class BoundingBox:
@@ -193,7 +129,7 @@ class BoundingBox:
 
 
 class BossCommand:
-    name: str
+    name: BossCommandType
     paramHigh: int
     paramLow: int
     namedParams: dict[str, Union[int, bool]]
@@ -207,38 +143,38 @@ class BossCommand:
 
         assert unused == 0, unused
         if command == 4 and self.paramHigh == 0:
-            self.name = "runAnimationForDuration"
+            self.name = BossCommandType.RUN_ANIMATION_FOR_DURATION
         elif command == 4:
-            self.name = "runEnemyAIForSteps"
+            self.name = BossCommandType.RUN_ENEMY_AI_FOR_STEPS
         else:
-            self.name = BOSS_COMMAND_NAMES[command]
-        
-        if self.name in ["setStartPosition", "moveToGoal"]:
-            self.namedParams["x"] = self.paramHigh * 2
-            self.namedParams["y"] = self.paramLow * 2
-        elif self.name == "loop":
-            assert self.paramLow in [0, -128], self.paramLow
-            assert self.paramHigh in [0, -128], self.paramHigh
-        elif self.name == "runEnemyAIForSteps":
-            self.namedParams["steps"] = self.paramLow
-            if self.paramHigh != 1:
-                self.namedParams["unusualHighByte"] = self.paramHigh
-        else:
-            if self.paramHigh != 0:
-                self.namedParams["unusedHighByte"] = self.paramHigh
+            self.name = BossCommandType(command)
 
-            if self.name == "setIsInvulnerable":
-                assert self.paramLow in [0, 1], self.paramLow
-                self.namedParams["invulnerable"] = self.paramLow != 0
-            elif self.name == "setAnimationGroup":
-                self.namedParams["group"] = self.paramLow
-            elif self.name == "playSound":
-                self.namedParams["index"] = self.paramLow
-            elif self.name in "runAnimationForDuration":
-                self.namedParams["frames"] = self.paramLow
+        if self.name in BOSS_COMMAND_PARAM_NAMES:
+            lowName, highName, shouldDouble = BOSS_COMMAND_PARAM_NAMES[self.name]
+        else:
+            lowName = None
+            highName = None
+            shouldDouble = False
+        
+        if lowName:
+            if shouldDouble:
+                self.namedParams[lowName] = self.paramLow * 2
             else:
-                if self.paramLow != 0:
-                    self.namedParams["unusedLowByte"] = self.paramLow
+                self.namedParams[lowName] = self.paramLow
+        elif self.paramLow != 0:
+            self.namedParams["unusedLowByte"] = self.paramLow
+        
+        if highName:
+            if shouldDouble:
+                self.namedParams[highName] = self.paramHigh * 2
+            else:
+                self.namedParams[highName] = self.paramHigh
+        elif self.paramHigh != 0 and self.name != BossCommandType.RUN_ENEMY_AI_FOR_STEPS:
+            self.namedParams["unusedHighByte"] = self.paramHigh
+        elif self.paramHigh != 0 and self.paramHigh != 1:
+            # Special name for RUN_ENEMY_AI because the value is *used*, it's just
+            # not an expected value.
+            self.namedParams["unusualHighByte"] = self.paramHigh
 
     def __repr__(self) -> str:
         params = ", ".join(map(lambda entry: f"{entry[0]}={entry[1]}", self.namedParams.items()))
@@ -256,6 +192,9 @@ def _cellSerializer(o):
     Classes can implement the magic method serializeToDict() to customize
     the fields that are serialized.
     """
+    if isinstance(o, Enum):
+        return str(o)
+
     try:
         return o.serializeToDict()
     except AttributeError:
@@ -989,7 +928,7 @@ class Game:
         else:
             template = "{data}"
         
-        values = self._gatherValuesForDescFieldByEntityName(lambda desc: desc.canUseProjectiles)
+        values = self._gatherValuesForDescFieldByEntityName(lambda desc: str(desc.canUseProjectiles))
         dataText = self._renderValuesByEntityName(values)
         
         with open(curiositiesRoot + "/Actor Desc Projectile Field.md", "w") as f:
@@ -1049,7 +988,7 @@ class Game:
             defense: int
             weakness: str
             bonusDamage: int
-            loot: str
+            loot: LootDropType
 
             def __repr__(self):
                 notableStats = []
@@ -1063,7 +1002,7 @@ class Game:
                 if self.weakness != "None" or self.bonusDamage != 0:
                     notableStats.append("weakness={}".format(self.weakness))
                     notableStats.append("bonusDamage={}".format(self.bonusDamage))
-                if self.loot != "Nothing":
+                if self.loot != LootDropType.NOTHING:
                     notableStats.append("loot={}".format(self.loot))
                 return "[{}]".format(", ".join(notableStats))
 
@@ -1171,17 +1110,17 @@ class BossData:
         self.loopStartIndex = None
         self._startPositionCommand = None
 
-        assert self.commands[0].name == "advanceToNextActor"
-        assert self.commands[-1].name == "loop"
+        assert self.commands[0].name == BossCommandType.ADVANCE_TO_NEXT_ACTOR
+        assert self.commands[-1].name == BossCommandType.LOOP
         for i in range(1, len(self.commands) - 1):
             command = self.commands[i]
-            assert command.name != "advanceToNextActor"
-            assert command.name != "loop"
-            if command.name == "setStartPosition":
+            assert command.name != BossCommandType.ADVANCE_TO_NEXT_ACTOR
+            assert command.name != BossCommandType.LOOP
+            if command.name == BossCommandType.SET_START_POSITION:
                 assert self.startPosition == None
                 self.startPosition = Coords(command.namedParams["x"], command.namedParams["y"])
                 self._startPositionCommand = command
-            elif command.name == "setLoopStartIndex":
+            elif command.name == BossCommandType.SET_LOOP_START_INDEX:
                 #assert self.loopStartIndex == None
                 self.loopStartIndex = i + 1
         
@@ -1200,7 +1139,7 @@ class BossData:
         else:
             loop = self.commands
         
-        importList = {command.name for command in loop if command.name != "loop"}
+        importList = {str(command.name) for command in loop if command.name != BossCommandType.LOOP}
         importList.add("wasteOneFrame")
         importList.add("AllFunctionsEndTheFrame")
         importList.add("actor")
@@ -1212,15 +1151,15 @@ class BossData:
 
         code += "\twhile True:\n"
         for command in loop:
-            if command.name == "loop":
+            if command.name == BossCommandType.LOOP:
                 currentLine = "wasteOneFrame() # It takes one frame to reset the loop counter."
-            elif command.name in ["setStartPosition", "advanceToNextActor", "setStartPosition"]:
+            elif command.name in [BossCommandType.SET_START_POSITION, BossCommandType.ADVANCE_TO_NEXT_ACTOR, BossCommandType.SET_LOOP_START_INDEX]:
                 currentLine = f"wasteOneFrame() # Technically this is \"{command.toPseudocode()}\" but the command is skipped" \
                     + " inside the loop. It's only used by init code before any frames happen."
             else:
                 currentLine = command.toPseudocode()
 
-                if command.name == "runAnimationForDuration":
+                if command.name == BossCommandType.RUN_ANIMATION_FOR_DURATION:
                     currentLine += " # Boss doesn't move during animation."
                 elif "unusualHighByte" in command.namedParams:
                     currentLine += " # unusualHighByte: The code only checks for zero or nonzero. This script considers anything"\
@@ -1262,7 +1201,7 @@ class Actor:
     # updated each frame - whether they follow a set path, if they loop an
     # animation, or if they wander around, or several other options. This
     # could also be called "actor type", but that's too broad.
-    animationType: str
+    animationType: AnimationType
     # The description for this actor.
     description: Optional["ActorDescription"]
     # The animation state for this actor.
@@ -1287,10 +1226,7 @@ class Actor:
         self.direction: Literal["UP", "RIGHT", "DOWN", "LEFT", "TELEPORT"] \
             = DIRECTION_LOOKUP[direction]
         
-        if animationType in ANIMATION_TYPE_MAYBE_LOOKUP:
-            self.animationType: str = ANIMATION_TYPE_MAYBE_LOOKUP[animationType]
-        else:
-            self.animationType = ANIMATION_TYPE_MAYBE_LOOKUP["default"].format(animationType)
+        self.animationType = AnimationType(animationType)
         
         assert x == 0 and y == 0, "Nonzero current position: ({}, {})".format(x, y)
         assert touchDuration == 0, "Nonzero touch duration: {}".format(touchDuration)
@@ -1317,9 +1253,9 @@ class ActorDescription:
     bonusDamage: int
     unk_0x2b: int
     unk_0x2c: int
-    canUseProjectiles: str
-    type_maybe: str
-    lootDropped: str
+    canUseProjectiles: ProjectileField
+    type_maybe: ActorType
+    lootDropped: LootDropType
     groupCount: int
     maxHealth_maybe: int
     useCostOrDefense: int
@@ -1359,16 +1295,9 @@ class ActorDescription:
         assert padding == 0, padding
         assert unusedSamplePoint == 0, unusedSamplePoint
 
-        assert projectile in PROJECTILE_FIELD_LOOKUP, projectile
-        self.canUseProjectiles = PROJECTILE_FIELD_LOOKUP[projectile]
-
-        if metaType_maybe in ACTOR_TYPE_MAYBE_LOOKUP:
-            self.type_maybe: str = ACTOR_TYPE_MAYBE_LOOKUP[metaType_maybe]
-        else:
-            self.type_maybe = ACTOR_TYPE_MAYBE_LOOKUP["default"].format(metaType_maybe)
-        
-        assert lootDropped in LOOT_DROP_TYPE_LOOKUP, lootDropped
-        self.lootDropped = LOOT_DROP_TYPE_LOOKUP[lootDropped]
+        self.canUseProjectiles = ProjectileField(projectile)
+        self.type_maybe = ActorType(metaType_maybe)
+        self.lootDropped = LootDropType(lootDropped)
 
         self.groupCount: int
         self.maxHealth_maybe: int
@@ -1762,7 +1691,7 @@ class Cell:
                         break
                 i = 0
                 for actor in self.actors:
-                    if actor.animationType in ["UnknownType1", "FloatingRaft", "MovingRaft"]:
+                    if actor.animationType in [AnimationType.UNKNOWN_TYPE_1, AnimationType.FLOATING_RAFT, AnimationType.MOVING_RAFT]:
                         actor.animation = animations[i]
                         i += 1
                 assert i == len(tree.children["sp_vector"].elements), (i, tree.children["sp_vector"].elements, self.showActors())
@@ -1771,7 +1700,7 @@ class Cell:
                 self._weaponData = tree.children["wp_cmds"]
             
             if "kp_init" in tree.children:
-                boss_actors = [d for d in self.descriptions if d.type_maybe == "Boss"]
+                boss_actors = [d for d in self.descriptions if d.type_maybe == ActorType.BOSS]
                 assert len(boss_actors) == 1, boss_actors
                 boss_actor = boss_actors[0]
                 boss_projectile = None
@@ -1806,10 +1735,10 @@ class Cell:
         scriptFile = subFile.getRecord(6, kind="data")
         scriptFileTree = ResourceTree.parseFromStream(StructStream(scriptFile, endianPrefix=">"))
         for desc, tree in zip(self.descriptions, scriptFileTree.children.values()):
-            desc.scripts = ScriptSet(tree, ACTOR_SCRIPT_TYPE_LOOKUP)
+            desc.scripts = ScriptSet(tree, ActorScriptType)
 
         cellScriptTree = scriptFileTree.children[len(self.descriptions)]
-        self.scripts = ScriptSet(cellScriptTree, CELL_SCRIPT_TYPE_LOOKUP)
+        self.scripts = ScriptSet(cellScriptTree, CellScriptType)
 
         cellVarArray = scriptFileTree.children[len(self.descriptions) + 1]
         if self.name != "gl6":

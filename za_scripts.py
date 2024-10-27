@@ -1,8 +1,9 @@
 
-from za_filesystem import ResourceTree
+from enum import Enum
+from za_filesystem import ResourceTree, ResourceTreeNode
 from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
 
-from typing import Dict, Union, Callable, List, Tuple, Optional
+from typing import Dict, Type, Union, Callable, List, Tuple, Optional
 
 
 
@@ -293,21 +294,22 @@ class ScriptCondition:
         return "ScriptCondition({})".format(self.pretty)
 
 class ScriptSet:
-    def __init__(self, tree: ResourceTree, typeNameLookup: Dict[Union[int, str], str]):
-        self.scripts: Dict[str, List[Script]] = {}
+    scripts: Dict[Enum, List[Script]]
+
+    def __init__(self, tree: ResourceTree, typeNameEnum: Type[Enum]):
+        self.scripts = {}
+
         for i, subTree in enumerate(tree.children.values()):
-            if i in typeNameLookup:
-                kind = typeNameLookup[i]
-            else:
-                kind = typeNameLookup["default"].format(i)
+            kind = typeNameEnum(i)
 
             triggerScripts = self._parseScriptPseudoArray(subTree)
             if len(triggerScripts) > 0:
                 self.scripts[kind] = triggerScripts
 
     def _parseScriptPseudoArray(self, root: ResourceTree) -> List[ScriptAction]:
-        scripts = []
+        assert isinstance(root, ResourceTreeNode)
         assert len(root.children) % 3 == 0
+        scripts: list[Script] = []
         count = len(root.children) // 3
         for i in range(count):
             scriptTrees = [
