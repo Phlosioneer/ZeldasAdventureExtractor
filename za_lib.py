@@ -2,7 +2,7 @@
 import json
 import os
 import copy
-from typing import List, Tuple, Dict, Union, Optional, Literal, Self, Iterator, TYPE_CHECKING
+from typing import List, Tuple, Dict, Union, Optional, Literal, Self, Iterator, Callable, Any
 from dataclasses import dataclass, asdict
 
 from tqdm import tqdm_notebook as tqdm
@@ -29,6 +29,7 @@ except NameError:
 ANIMATION_TYPE_MAYBE_LOOKUP = {
     "default": "UnknownType{}",
     0: "Immobile",
+    2: "Enemy",
     3: "AnimationActionsOnly",
     4: "PushableBlock",
     5: "Boss", # Not found in files, only applied at runtime.
@@ -83,16 +84,16 @@ PROJECTILE_FIELD_LOOKUP = {
 }
 
 BOSS_COMMAND_NAMES = {
-    0: "Loop",
-    1: "AdvanceToNextActor",
-    2: "SetStartPosition",
-    3: "SetLoopStartIndex",
+    0: "loop",
+    1: "advanceToNextActor",
+    2: "setStartPosition",
+    3: "setLoopStartIndex",
     # 4 has two possible names depending on paramHigh
-    5: "MoveToGoal",
-    6: "UseAttack",
-    7: "SetAnimationGroup",
-    8: "SetIsInvulnerable",
-    9: "PlaySound"
+    5: "moveToGoal",
+    6: "useAttack",
+    7: "setAnimationGroup",
+    8: "setIsInvulnerable",
+    9: "playSound"
 }
 
 @dataclass(eq=True, frozen=True)
@@ -206,34 +207,34 @@ class BossCommand:
 
         assert unused == 0, unused
         if command == 4 and self.paramHigh == 0:
-            self.name = "AnimateInPlace"
+            self.name = "runAnimationForDuration"
         elif command == 4:
-            self.name = "StepNormalAI_extremelyComplicated"
+            self.name = "runEnemyAIForSteps"
         else:
             self.name = BOSS_COMMAND_NAMES[command]
         
-        if self.name in ["SetStartPosition", "MoveToGoal"]:
+        if self.name in ["setStartPosition", "moveToGoal"]:
             self.namedParams["x"] = self.paramHigh * 2
             self.namedParams["y"] = self.paramLow * 2
-        elif self.name == "Loop":
+        elif self.name == "loop":
             assert self.paramLow in [0, -128], self.paramLow
             assert self.paramHigh in [0, -128], self.paramHigh
-        elif self.name == "StepNormalAI_extremelyComplicated":
-            self.namedParams["frames"] = self.paramLow
+        elif self.name == "runEnemyAIForSteps":
+            self.namedParams["steps"] = self.paramLow
             if self.paramHigh != 1:
                 self.namedParams["unusualHighByte"] = self.paramHigh
         else:
             if self.paramHigh != 0:
                 self.namedParams["unusedHighByte"] = self.paramHigh
 
-            if self.name == "SetIsInvulnerable":
+            if self.name == "setIsInvulnerable":
                 assert self.paramLow in [0, 1], self.paramLow
                 self.namedParams["invulnerable"] = self.paramLow != 0
-            elif self.name == "SetAnimationGroup":
+            elif self.name == "setAnimationGroup":
                 self.namedParams["group"] = self.paramLow
-            elif self.name == "PlaySound":
+            elif self.name == "playSound":
                 self.namedParams["index"] = self.paramLow
-            elif self.name in "AnimateInPlace":
+            elif self.name in "runAnimationForDuration":
                 self.namedParams["frames"] = self.paramLow
             else:
                 if self.paramLow != 0:
@@ -591,17 +592,22 @@ class Game:
         """Get the total number of cells in the game."""
         return len(self._overFiles.subFiles) + len(self._underFiles.subFiles)
 
-    def exportJustScripts(self, path):
+    def exportJustScripts(self, scriptPath: str, libraryScriptFolder: Optional[str]):
         """
         Exports all the cell scripts into a separate directory. Useful for
         e.g. looking up every script for a particular shrine.
 
         The `path` argument MAY end in `/` but this is not required.
+
+        If the `libraryScriptFolder` path is provided, then all the python files
+        in that folder will be copied to the export's `scripts` folder.
         """
 
         # Correct the path if needed
-        if path[-1] != "/":
-            path += "/"
+        if scriptPath[-1] != "/":
+            scriptPath += "/"
+        if libraryScriptFolder and libraryScriptFolder[-1] != "/":
+            libraryScriptFolder += "/"
         bar = tqdm(total=len(self._overFiles.subFiles) + len(self._underFiles.subFiles))
         
         def exportWorld(folder: str, names: List[str], isOverworld: bool):
@@ -630,10 +636,19 @@ class Game:
         
         # Apply that sub-function to both overworld and underworld.
         try:
-            exportWorld(path + "overworld", self._overFiles.subFiles.keys(), True)
-            exportWorld(path + "underworld", self._underFiles.subFiles.keys(), False)
+            exportWorld(scriptPath + "overworld", self._overFiles.subFiles.keys(), True)
+            exportWorld(scriptPath + "underworld", self._underFiles.subFiles.keys(), False)
         finally:
             bar.close()
+        
+        if libraryScriptFolder:
+            files = os.listdir(libraryScriptFolder)
+            for file in files:
+                if file.endswith(".py"):
+                    with open(libraryScriptFolder + file, "r") as f:
+                        text = f.read()
+                    with open(scriptPath + file, "w") as f:
+                        f.write(text)
 
     def getCell(self, name: str, isOverworld: Optional[bool] = None, silenceWarning: bool = False) -> "Cell":
         """
@@ -877,14 +892,22 @@ class Game:
             self.getCell(name, False).info.voiceLineIds = self.getCell(name, True).info.voiceLineIds
             bar.update(1)
 
-    def export(self, root):
+    def export(self, root: str, templateFolder: Optional[str], libraryScriptFolder: Optional[str]):
         """
         Exports all of the game's data into the directory path `root`. The `root`
         path MAY end in `/`, it is not required.
+
+        `templateFolder` is the path to markdown headers for curiosities.
         """
         self.assignVoiceLines()
         if root[-1] != "/":
             root += "/"
+        
+        if templateFolder and templateFolder[-1] != "/":
+            templateFolder += "/"
+        
+        if libraryScriptFolder and libraryScriptFolder[-1] != "/":
+            libraryScriptFolder += "/"
 
         self._exportCommonData(root + "common")
         
@@ -896,9 +919,9 @@ class Game:
             else:
                 cell.export(underworldFolder, self)
         print("Exporting curiosities")
-        self._exportCuriosities(root + "curiosities")
+        self._exportCuriosities(root + "curiosities", templateFolder)
         print("Exporting copy of scripts to separate dir")
-        self.exportJustScripts(root + "scripts")
+        self.exportJustScripts(root + "scripts", libraryScriptFolder)
     
     def _exportCommonData(self, commonRoot):
         """
@@ -947,7 +970,7 @@ class Game:
         foundFile = saveSoundFile(sectors, 1 << (file.channel & 0x7F), filename)
         assert foundFile, (globalId, filename, file.__dict__)
 
-    def _exportCuriosities(self, curiositiesRoot):
+    def _exportCuriosities(self, curiositiesRoot: str, templateFolder: Optional[str]):
         """
         Exports some useful or neat stats from the huge amount of exported data.
         """
@@ -955,9 +978,54 @@ class Game:
             curiositiesRoot = curiositiesRoot[:-1]
         os.makedirs(curiositiesRoot, exist_ok=True)
         
+        self._exportCurioProjectileField(curiositiesRoot, templateFolder)
         self._exportCurioWeaknesses(curiositiesRoot)
         self._exportCurioEnemyStats(curiositiesRoot)
+    
+    def _exportCurioProjectileField(self, curiositiesRoot: str, templateFolder: Optional[str]):
+        if templateFolder:
+            with open(templateFolder + "Actor Desc Projectile Field.md", "r") as f:
+                template = f.read()
+        else:
+            template = "{data}"
         
+        values = self._gatherValuesForDescFieldByEntityName(lambda desc: desc.canUseProjectiles)
+        dataText = self._renderValuesByEntityName(values)
+        
+        with open(curiositiesRoot + "/Actor Desc Projectile Field.md", "w") as f:
+            f.write(template.replace("{data}", dataText.strip(), 1))
+
+    def _gatherValuesForDescFieldByEntityName(self, fieldGetter: Callable[["ActorDescription"], Any]) -> Dict[str, Dict[Any, list[str]]]:
+        """
+        Gathers machine-readable info on the possible values that an actor description field can take.
+        """
+        valuesPerEntity = {}
+        for cell in self.cells(duplicates=True):
+            for desc in cell.descriptions:
+                if desc.commonName not in valuesPerEntity:
+                    valuesPerEntity[desc.commonName] = {}
+                value = fieldGetter(desc)
+                if value not in valuesPerEntity[desc.commonName]:
+                    valuesPerEntity[desc.commonName][value] = []
+                if cell.name not in valuesPerEntity[desc.commonName][value]:
+                    valuesPerEntity[desc.commonName][value].append(cell.name)
+        
+        return valuesPerEntity
+
+    def _renderValuesByEntityName(self, valuesPerEntity: Dict[str, Dict[Any, list[str]]]):
+        text = ""
+        for name in sorted(valuesPerEntity):
+            values = valuesPerEntity[name]
+            if len(values) == 1:
+                text += f"{name} always has value {list(values.keys())[0], list(values.values())[0]}\n"
+            else:
+                text += f"{name} has different values on different cells:\n"
+                for value, cellNames in values.items():
+                    cellNameList = ", ".join(cellNames)
+                    cellsWord = "cells" if len(cellNames) > 1 else "cell"
+                    text += f"\t{value} on {cellsWord} {cellNameList}\n"
+        return text
+    
     def _exportCurioWeaknesses(self, curiositiesRoot):
         """
         Exports a human-readable text file listing all the weaknesses for enemies.
@@ -1103,49 +1171,63 @@ class BossData:
         self.loopStartIndex = None
         self._startPositionCommand = None
 
-        assert self.commands[0].name == "AdvanceToNextActor"
-        assert self.commands[-1].name == "Loop"
+        assert self.commands[0].name == "advanceToNextActor"
+        assert self.commands[-1].name == "loop"
         for i in range(1, len(self.commands) - 1):
             command = self.commands[i]
-            assert command.name != "AdvanceToNextActor"
-            assert command.name != "Loop"
-            if command.name == "SetStartPosition":
+            assert command.name != "advanceToNextActor"
+            assert command.name != "loop"
+            if command.name == "setStartPosition":
                 assert self.startPosition == None
                 self.startPosition = Coords(command.namedParams["x"], command.namedParams["y"])
                 self._startPositionCommand = command
-            elif command.name == "SetLoopStartIndex":
+            elif command.name == "setLoopStartIndex":
                 #assert self.loopStartIndex == None
                 self.loopStartIndex = i + 1
         
         # TODO: Parse weapon
     
     def toPseudocode(self) -> str:
-        code = "def bossAI():\n"
+        code = "@AllFunctionsEndTheFrame\ndef bossAI():\n"
         if self._startPositionCommand != None:
-            code += f"\t{self._startPositionCommand.toPseudocode()}\n"
+            x = self._startPositionCommand.namedParams["x"]
+            y = self._startPositionCommand.namedParams["y"]
+            code += f"\tactor.position.x = {x}\n"
+            code += f"\tactor.position.y = {y}\n"
         
         if self.loopStartIndex != None:
             loop = self.commands[self.loopStartIndex:]
         else:
             loop = self.commands
+        
+        importList = {command.name for command in loop if command.name != "loop"}
+        importList.add("wasteOneFrame")
+        importList.add("AllFunctionsEndTheFrame")
+        importList.add("actor")
+        importList = list(importList)
+        imports = ""
+        while len(importList) > 0:
+            imports += "from scripts.ai import " + ", ".join(importList[:5]) + "\n"
+            importList = importList[5:]
 
         code += "\twhile True:\n"
         for command in loop:
-            if command.name == "Loop":
-                currentLine = "WasteOneFrame() # It takes one frame to reset the loop counter."
-            elif command.name in ["SetStartPosition", "AdvanceToNextActor", "SetStartPosition"]:
-                currentLine = f"WasteOneFrame() # Technically this is \"{command.toPseudocode()}\" but the command is skipped" \
-                + " inside the loop. It's only used by init code before any frames happen."
+            if command.name == "loop":
+                currentLine = "wasteOneFrame() # It takes one frame to reset the loop counter."
+            elif command.name in ["setStartPosition", "advanceToNextActor", "setStartPosition"]:
+                currentLine = f"wasteOneFrame() # Technically this is \"{command.toPseudocode()}\" but the command is skipped" \
+                    + " inside the loop. It's only used by init code before any frames happen."
             else:
                 currentLine = command.toPseudocode()
-            
-                if "unusualHighByte" in command.namedParams:
+
+                if command.name == "runAnimationForDuration":
+                    currentLine += " # Boss doesn't move during animation."
+                elif "unusualHighByte" in command.namedParams:
                     currentLine += " # unusualHighByte: The code only checks for zero or nonzero. This script considers anything"\
-                    + " that isn't 0 or 1 (i.e. true or false) to be \"unusual\"."
+                        + " that isn't 0 or 1 (i.e. true or false) to be \"unusual\"."
             code += f"\t\t{currentLine}\n"
 
-        
-        return code
+        return imports + "\n" + code
 
 class Actor:
     """
