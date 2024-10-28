@@ -1,0 +1,1 @@
+This directory has write-ups of curiosities that are populated with actual data during export.

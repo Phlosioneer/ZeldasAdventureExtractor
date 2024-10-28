@@ -9,16 +9,16 @@ from enum import Enum
 from tqdm import tqdm_notebook as tqdm
 import PIL.Image
 
-from struct_stream import StructStream
-import cdi_filesystem
-from cdi_images import dyuvToRGB, rl7ToRGB
-from cdi_audio import saveSoundFile
-from za_filesystem import ResourceTree, ResourceFileSystem, \
+from .struct_stream import StructStream
+from .cdi_spec.filesystem import CdiFileSystem, loadCdiImageFile
+from .cdi_spec.images import dyuvToRGB, rl7ToRGB
+from .cdi_spec.audio import saveSoundFile
+from .resource_tree import ResourceTree, ResourceFileSystem, \
     ResourceFileSystemFolder, ResourceTreeNode, ResourceTreeSet
-from za_images import decompressSprite, unpackPointerArray, unpackSpriteTree,\
+from .sprites import decompressSprite, unpackPointerArray, unpackSpriteTree,\
     getClut, convertClutToRgba, PointerArray
-from za_constants import BOSS_COMMAND_PARAM_NAMES, SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP, ActorScriptType, ActorType, AnimationType, BossCommandType, CellScriptType, LootDropType, ProjectileField
-from za_scripts import ScriptSet
+from .constants import BOSS_COMMAND_PARAM_NAMES, SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP, ActorScriptType, ActorType, AnimationType, BossCommandType, CellScriptType, LootDropType, ProjectileField
+from .scripts import ScriptSet
 
 # Compat for running scripts in both jupyter and console
 try:
@@ -257,7 +257,7 @@ class Game:
     # Internal data
 
     # The CDI disk's filesystem
-    _gameData: cdi_filesystem.CdiFileSystem
+    _gameData: CdiFileSystem
     
     # `zelda.rtf`
     _mainFile: ResourceFileSystem
@@ -279,7 +279,7 @@ class Game:
         self.overworldCells = {}
         self.underworldCells = {}
 
-        self._gameData = cdi_filesystem.loadCdiImageFile(dataFileName)
+        self._gameData = loadCdiImageFile(dataFileName)
         mainMapStream = StructStream(self._gameData.files["zelda.mapres"].getBytes(), endianPrefix=">")
         self._mainFile = ResourceFileSystem(mainMapStream, self._gameData.files["zelda.rtf"])
         self._zeldaRlFiles = self._parseSubFile("rmap", "zelda_rl.rtf")

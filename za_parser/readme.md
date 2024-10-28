@@ -1,0 +1,1 @@
+This folder holds all the python scripts used by the jupyter notebooks. It can also be used as a stand-alone library.

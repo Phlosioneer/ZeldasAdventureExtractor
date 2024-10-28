@@ -1,6 +1,5 @@
 import PIL.Image
 import array
-from struct_stream import StructStream
 import struct
 
 QUANT_TABLE = [

@@ -1,0 +1,3 @@
+Any python files in this directory are copied into the `/scripts` directory of the export. They're useful to convey some of the core logic/systems of the game in an easier to understand format. They're also useful to reduce ambiguity in the naming of various commands, like those in animation scripts, cell scripts, actor scripts, and boss scripts.
+
+The scripts in this folder are not intended to exactly replicate the way that the game works at a low level. Many of the scripts here use algorithms that aren't used in the game, or reorganize `if` statements into an equivalent but easier-to-understand structure. Each function SHOULD perform exactly as it would in the game though, including bugs and corner cases. The INTERIOR is allowed to be different from the game.

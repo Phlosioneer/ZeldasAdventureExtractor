@@ -1,9 +1,9 @@
 
 from typing import Self, Dict, List, Literal, TYPE_CHECKING, Optional, Union
 
-from struct_stream import StructStream
+from .struct_stream import StructStream
 if TYPE_CHECKING:
-    from cdi_filesystem import CdiFile, CdiSector
+    from .cdi_spec.filesystem import CdiFile, CdiSector
 
 #######################
 # Resource Tree Format

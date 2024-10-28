@@ -6,10 +6,10 @@ from dataclasses import dataclass
 
 import PIL.Image
 
-from struct_stream import StructStream
+from .struct_stream import StructStream
 
 if TYPE_CHECKING:
-    from za_lib import ActorDescription
+    from .model import ActorDescription
 
 def decompressSprite(stream: StructStream, palette: bytes, paletteMode: Literal["RGB", "RGBA"]):
     """

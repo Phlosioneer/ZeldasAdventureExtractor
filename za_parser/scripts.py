@@ -1,11 +1,9 @@
 
 from enum import Enum
-from za_filesystem import ResourceTree, ResourceTreeNode
-from za_constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
-
 from typing import Dict, Type, Union, Callable, List, Tuple, Optional
 
-
+from .resource_tree import ResourceTree, ResourceTreeNode
+from .constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
 
 
 OPCODE_LOOKUP: Dict[int, Union[

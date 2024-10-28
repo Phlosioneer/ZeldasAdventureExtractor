@@ -8,7 +8,7 @@ import dataclasses
 from typing import TYPE_CHECKING, Tuple, List
 
 if TYPE_CHECKING:
-    from cdi_filesystem import CdiSector
+    from za_parser.cdi_spec.filesystem import CdiSector
 
 # a lookup list for the index of each parameter byte in the sound group header
 PARAM_IDX = range(4, 12)

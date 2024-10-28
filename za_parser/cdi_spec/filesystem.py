@@ -5,7 +5,7 @@ import struct
 from typing import Dict, Literal, List, Optional
 
 from tqdm import tqdm_notebook as tqdm
-from struct_stream import StructStream
+from za_parser.struct_stream import StructStream
 
 class CdiSector:
 	"""
