@@ -1,15 +1,10 @@
-from __future__ import annotations
 
-from typing import Literal, Tuple, List, Union, TYPE_CHECKING, TypeVar
+from typing import Literal
 from dataclasses import dataclass
-
 
 import PIL.Image
 
 from .struct_stream import StructStream
-
-if TYPE_CHECKING:
-    from .model import ActorDescription
 
 def decompressSprite(stream: StructStream, palette: bytes, paletteMode: Literal["RGB", "RGBA"]):
     """
@@ -104,12 +99,12 @@ def unpackSpriteTree(data: bytes, palette: bytes, paletteMode: Literal["RGB", "R
     topStream = StructStream(data, endianPrefix=">")
     topArray = unpackPointerArray(topStream)
     
-    actorTree: List[StructStream]
+    actorTree: list[StructStream]
     for i, actorTree in enumerate(topArray.elements):
         middleArray = unpackPointerArray(actorTree)
         topArray.elements[i] = middleArray
 
-        groupTree: List[StructStream]
+        groupTree: list[StructStream]
         for j, groupTree in enumerate(middleArray.elements):
             bottomArray = unpackPointerArray(groupTree)
             middleArray.elements[j] = bottomArray
@@ -118,7 +113,7 @@ def unpackSpriteTree(data: bytes, palette: bytes, paletteMode: Literal["RGB", "R
     
     return topArray
 
-def getClut(data: Union[bytes, StructStream]) -> bytes:
+def getClut(data: bytes | StructStream) -> bytes:
     """
     Reads a clut file.
 
@@ -132,7 +127,7 @@ def getClut(data: Union[bytes, StructStream]) -> bytes:
     size = stream.take("I")
     return stream.takeRaw(size * 3)
 
-def convertClutToRgba(clut: bytes, indices: List[int] = [], tColors: List[bytes] = []) -> bytes:
+def convertClutToRgba(clut: bytes, indices: list[int] = [], tColors: list[bytes] = []) -> bytes:
     """
     Converts a palette from RGB to RGBA.
     

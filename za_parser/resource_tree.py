@@ -1,7 +1,8 @@
 
-from typing import Self, Dict, List, Literal, TYPE_CHECKING, Optional, Union
+from typing import Self, Literal, TYPE_CHECKING
 
 from .struct_stream import StructStream
+
 if TYPE_CHECKING:
     from .cdi_spec.filesystem import CdiFile, CdiSector
 
@@ -18,7 +19,7 @@ class ResourceTree:
     """
 
     # The tag indicates which type of resource tree node this is.
-    tag: Union[0, 1, 2]
+    tag: Literal[0, 1, 2]
     # The size, in bytes, of all data that is part of THIS node (not child
     # nodes). The definition is weird and flexible because it's not actually
     # used for anything.
@@ -32,7 +33,7 @@ class ResourceTree:
     
     # Static
     def parseFromStream(stream: StructStream) \
-        -> Union["ResourceTreeNode", "ResourceTreeArray", "ResourceTreeSet", Self]:
+        -> Literal["ResourceTreeNode", "ResourceTreeArray", "ResourceTreeSet"] | Self:
         """
         Parse a resource tree from data. This method takes care of parsing the `tag`
         to figure out which ResourceTree subclass to create.
@@ -51,7 +52,7 @@ class ResourceTree:
             print("Unknown tag type:", tag)
             return ResourceTree(stream)
     
-    def simplify(self) -> Union[dict, list]:
+    def simplify(self) -> dict | list:
         """
         Convert this node and all its children into json-serializable types.
         """
@@ -81,7 +82,7 @@ class ResourceTreeNode(ResourceTree):
     hasNames: bool
     # The children of this node in the tree. Keys are either all numbers, or
     # all strings. They're almost alway strings.
-    children: Union[Dict[int, ResourceTree], Dict[str, ResourceTree]]
+    children: dict[int, ResourceTree] | dict[str, ResourceTree]
 
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
@@ -127,7 +128,7 @@ class ResourceTreeNode(ResourceTree):
         
         # Combine the name list and child list into a single dict. Could probably do
         # something fancy with `zip()` and iterators. Whatever.
-        self.children: Dict[str, ResourceTree] = {}
+        self.children: dict[str, ResourceTree] = {}
         for i in range(len(names)):
             self.children[names[i]] = children[i]
     
@@ -159,7 +160,7 @@ class ResourceTreeSet(ResourceTree):
     # Not meant for public use.
     baseOffset: int
     # Child elements as raw data.
-    elements: List[StructStream]
+    elements: list[StructStream]
 
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
@@ -174,13 +175,13 @@ class ResourceTreeSet(ResourceTree):
         baseData = originalStream.copy().skip(self.baseOffset)
         listData = originalStream.copy().skip(self.listOffset)
         if count > 1:
-            elementOffsets: List[int] = list(baseData.copy().take("{}I".format(count)))
+            elementOffsets: list[int] = list(baseData.copy().take("{}I".format(count)))
         elif count == 1:
             elementOffsets = [baseData.copy().take("I")]
         else:
             elementOffsets = []
         
-        self.elements: List[StructStream] = []
+        self.elements: list[StructStream] = []
         for i, currentOffset in enumerate(elementOffsets):
             elementStart = listData.copy().skip(currentOffset)
             if i < len(elementOffsets) - 1:
@@ -218,7 +219,7 @@ class ResourceTreeArray(ResourceTree):
     """
     elementCount: int
     elementSize: int
-    elements: List[StructStream]
+    elements: list[StructStream]
 
     def __init__(self, stream: StructStream):
         originalStream = stream.copy()
@@ -229,7 +230,7 @@ class ResourceTreeArray(ResourceTree):
         
         self.elementCount, self.elementSize, offset = stream.take("III")
         elementData = originalStream.takeFork(self.size).skip(offset)
-        self.elements: List[StructStream] = [elementData.takeFork(self.elementSize) for _ in range(self.elementCount)]
+        self.elements: list[StructStream] = [elementData.takeFork(self.elementSize) for _ in range(self.elementCount)]
 
     def simplify(self) -> list:
         return self.elements
@@ -273,10 +274,10 @@ class ResourceFileSystem:
     """
     # Either a map of folder names, or a map of file indices. Should be renamed
     # to "subFolders" but I'm not able to fully test/validate the refactoring.
-    subFiles: Union[Dict[str, "ResourceFileSystemFolder"],
-                    Dict[int, "ResourceFileSystemFolder"]]
-    # True if the folders have names, and subFiles is a Dict[str, ...]. False if
-    # there are no names, and subFiles is a Dict[int, ...].
+    subFiles: dict[str, "ResourceFileSystemFolder"] \
+                    | dict[int, "ResourceFileSystemFolder"]
+    # True if the folders have names, and subFiles is a dict[str, ...]. False if
+    # there are no names, and subFiles is a dict[int, ...].
     hasNames: bool
     # The underlying file object, as provided by the CDI format's understanding of
     # files. That means this is a ".rtf" file.
@@ -284,7 +285,7 @@ class ResourceFileSystem:
     # Folders sorted by their first block index. Not for public use. Should be
     # renamed to "sortedFolderNames" but I'm not able to fully test/validate the
     # refactoring.
-    sortedFiles: List["ResourceFileSystemFolder"]
+    sortedFiles: list["ResourceFileSystemFolder"]
 
     def __init__(self, stream: StructStream, realFile: "CdiFile"):
         self.realFile = realFile
@@ -295,7 +296,7 @@ class ResourceFileSystem:
         
         # Parse the labels, or generate number labels.
         if "l" in root:
-            subFileNames: Union[List[str], List[int]] = [s.peekNullTermString().decode('ascii') for s in root["l"]]
+            subFileNames: list[str] | list[int] = [s.peekNullTermString().decode('ascii') for s in root["l"]]
         else:
             subFileNames = list(range(len(root["r"])))
         self.subFiles = {}
@@ -395,32 +396,32 @@ class ResourceFileSystemFolder:
     # The sector index for the first block.
     blockOffset: int
     # The sectors
-    sectors: List["CdiSector"]
-    nextFile: Optional[Self]
+    sectors: list["CdiSector"]
+    nextFile: Self | None
     # Block indices for each video record.
-    videoRecords: List[int]
+    videoRecords: list[int]
     # Block indices for each audio record.
-    audioRecords: List[int]
+    audioRecords: list[int]
     # Block indices for each data record.
-    dataRecords: List[int]
-    _cachedRecordData: Dict[str, Dict[int, bytes]]
+    dataRecords: list[int]
+    _cachedRecordData: dict[str, dict[int, bytes]]
     
     def __init__(self, name: str, stream: StructStream):
         self.name = name
         self.channel, self.blockOffset = stream.take("HI")
-        self.sectors: List["CdiSector"] = []
-        self.nextFile: Optional[Self] = None
+        self.sectors: list["CdiSector"] = []
+        self.nextFile: Self | None = None
         self.videoRecords = []
         self.audioRecords = []
         self.dataRecords = []
-        self._cachedRecordData: Dict[str, Dict[int, bytes]] = {}
+        self._cachedRecordData: dict[str, dict[int, bytes]] = {}
         if len(stream) == 6:
             # There are still 6 bytes left.
             
             self.videoSizesIndex, self.audioSizesIndex, self.dataSizesIndex = stream.take("HHH")
-            self.videoSizes: List[int] = []
-            self.audioSizes: List[int] = []
-            self.dataSizes: List[int] = []
+            self.videoSizes: list[int] = []
+            self.audioSizes: list[int] = []
+            self.dataSizes: list[int] = []
         else:
             print("6-byte file descriptors found:", len(stream))
     
@@ -451,7 +452,7 @@ class ResourceFileSystemFolder:
             assert name == "d"
             return self.dataSizesIndex
     
-    def _setSizes(self, name: Literal["v", "a", "d"], sizes: List[int]):
+    def _setSizes(self, name: Literal["v", "a", "d"], sizes: list[int]):
         if name == "v":
             self.videoSizes = sizes
         elif name == "a":
@@ -460,7 +461,7 @@ class ResourceFileSystemFolder:
             assert name == "d"
             self.dataSizes = sizes
     
-    def _getSizes(self, name: Literal["v", "a", "d"]) -> List[int]:
+    def _getSizes(self, name: Literal["v", "a", "d"]) -> list[int]:
         if name == "v":
             return self.videoSizes
         if name == "a":

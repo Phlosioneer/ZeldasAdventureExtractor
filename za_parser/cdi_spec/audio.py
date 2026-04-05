@@ -5,10 +5,10 @@
 import wave
 import dataclasses
 
-from typing import TYPE_CHECKING, Tuple, List
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from za_parser.cdi_spec.filesystem import CdiSector
+    from .filesystem import CdiSector
 
 # a lookup list for the index of each parameter byte in the sound group header
 PARAM_IDX = range(4, 12)
@@ -18,6 +18,7 @@ class Encoding:
     sample_rate: int
     sample_width: int
     stereo: bool
+
 
 class ADPCMDec:
     "ADPCM decoder"
@@ -76,7 +77,7 @@ def _extract_chans(d):
     "Extract channel data (left, right) from byte"
     return _sign_extend(d & 0b00001111), _sign_extend((d & 0b11110000) >> 4)
 
-def getRawSamples(sectors: List["CdiSector"], channelMask: int) -> Tuple[List[int], Encoding]:
+def getRawSamples(sectors: list["CdiSector"], channelMask: int) -> tuple[list[int], Encoding]:
     encoding = None
     outsamples = []
     for sector in sectors:
@@ -162,7 +163,7 @@ def getRawSamples(sectors: List["CdiSector"], channelMask: int) -> Tuple[List[in
     else:
         return outsamples, Encoding(sample_rate, sample_width, stereo)
 
-def saveSoundFile(sectors: List["CdiSector"], channelMask: int, fileName: str) -> bool:
+def saveSoundFile(sectors: list["CdiSector"], channelMask: int, fileName: str) -> bool:
     """
     Expects the filename without the extension. Files are saved in .wav format.
     

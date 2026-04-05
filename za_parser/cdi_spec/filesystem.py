@@ -2,7 +2,7 @@ import json
 import datetime
 import math
 import struct
-from typing import Dict, Literal, List, Optional
+from typing import Literal
 
 from tqdm import tqdm_notebook as tqdm
 from za_parser.struct_stream import StructStream
@@ -26,43 +26,43 @@ class CdiSector:
 
 	# `None` if this is a CD-DA sector. Otherwise, this is the ID of the file that
 	# this sector belongs to in the CDI filesystem.
-	file: Optional[int]
+	file: int | None
 
 	# `None` if this is a CD-DA sector. Otherwise, this is the channel for this
 	# sector (see Green Book, page AII-2 (about p870) for more info).
-	channel: Optional[int]
+	channel: int | None
 
 	# `None` if this is a CD-DA sector. Otherwise, this contains info about the
 	# encoding of audio and video, like bit sample depth, sampling frequency,
 	# mono or stereo audio, resolution, color mode, etc. (See Green Book, AII-6
 	# (about p874) for more info).
-	coding: Optional[int]
+	coding: int | None
 
 	# `None` if this is a CD-DA sector. Otherwise, True if this is the last sector
 	# in its file.
-	isEof: Optional[bool]
+	isEof: bool | None
 
 	# `None` if this is a CD-DA sector. Otherwise, True if this is a real-time
 	# sector, which triggers special handling in the CDI operating system.
-	isRealtime: Optional[bool]
+	isRealtime: bool | None
 
 	# `None` if this is a CD-DA sector. Otherwise, this is the form of the sector's
 	# data. Form 1 has more data, while Form 2 has more error correction.
-	form: Optional[Literal[1, 2]]
+	form: Literal[1, 2] | None
 
 	# `None` if this is a CD-DA sector. Otherwise, True if an interrupt should
 	# be sent to the application when this sector is read. Used to synchronize
 	# code with video and audio cues.
-	isTrigger: Optional[bool]
+	isTrigger: bool | None
 
 	# `None` if this is a CD-DA sector. Otherwise, this is the kind of data stored
 	# in the sector. Note that "data" sectors can contain audio and sprites,
 	# they just need to be handled manually by the application.
-	kind: Optional[Literal["empty", "data", "audio", "video"]]
+	kind: Literal["empty", "data", "audio", "video"] | None
 
 	# `None` if this is a CD-DA sector. Otherwise, True if this is the last sector
 	# in a "record", which is a sub-part of a file. 
-	isEndOfRecord: Optional[bool]
+	isEndOfRecord: bool | None
 
 	# The entire audio data region if this is a CD-DA sector, or the meaningful data
 	# region (omitting error correction) for a CD-I sector.
@@ -197,7 +197,7 @@ class CdiVolumeDescriptor:
 class CdiDirectory:
 	thisDescriptor: "CdiFile"
 	parentDescriptor: "CdiFile"
-	fileDescriptors: List["CdiFile"]
+	fileDescriptors: list["CdiFile"]
 
 	def __init__(self, sector: CdiSector):
 		s = StructStream(sector.data, endianPrefix=">")
@@ -209,7 +209,7 @@ class CdiDirectory:
 		self.parentDescriptor = CdiFile(s)
 		
 		# We continue reading until we've read bytes equal to the size of the directory.
-		self.fileDescriptors: List[CdiFile] = []
+		self.fileDescriptors: list[CdiFile] = []
 		while s._cursor < self.thisDescriptor.size:
 			file = CdiFile(s)
 			
@@ -219,36 +219,36 @@ class CdiDirectory:
 			self.fileDescriptors.append(file)
 
 class CdiFile:
-	_cachedBytes: Optional[bytes]
+	_cachedBytes: bytes | None
 	exAttribs: int
 	startBlock: int
 	size: int
 	creationDate: datetime.datetime
 	isHidden: bool
-	interleaveRatio: List[int]
+	interleaveRatio: list[int]
 	sequenceNumber: int
 	name: str
 	owner: dict
 	fileNumber: int
-	attributes: List[Literal[
+	attributes: list[Literal[
 			"Owner Read", "Owner Execute", "Group Read",
 			"Group Execute", "World Read", "World Execute",
 			"CD-DA file", "Directory"]]
-	sectors: List[CdiSector]
-	blocks: List[bytes]
-	modules: Optional[List[dict]]
-	unusedBytes: Optional[bytes]
+	sectors: list[CdiSector]
+	blocks: list[bytes]
+	modules: list[dict] | None
+	unusedBytes: bytes | None
 	def __init__(self, stream: StructStream):
 		s = stream
 		mark = len(s)
 		
-		self._cachedBytes: Optional[bytes] = None
+		self._cachedBytes: bytes | None = None
 		
 		recordLength: int = s.take("B")
 		self.exAttribs: int = s.take("B")
 		self.startBlock: int = s.skip(4).take("I")
 		self.size: int = s.skip(4).take("I")
-		creationDateRaw: List[int] = list(s.take("6B"))
+		creationDateRaw: list[int] = list(s.take("6B"))
 		self.creationDate = datetime.datetime(
 			creationDateRaw[0] + 1900,
 			creationDateRaw[1],
@@ -259,7 +259,7 @@ class CdiFile:
 		)
 		flags: int = s.skip(1).take("B")
 		self.isHidden = flags & 1 != 0
-		self.interleaveRatio: List[int] = list(s.take("BB"))
+		self.interleaveRatio: list[int] = list(s.take("BB"))
 		self.sequenceNumber: int = s.skip(2).take("H")
 		nameLength: int = s.take("B")
 		rawName = s.takeRaw(nameLength)
@@ -297,10 +297,10 @@ class CdiFile:
 		if attributeFlags & 0x8000 != 0:
 			self.attributes.append("Directory")
 			
-		self.sectors: List[CdiSector] = []
-		self.blocks: List[bytes] = []
-		self.modules: Optional[List[dict]] = None
-		self.unusedBytes: Optional[bytes] = None
+		self.sectors: list[CdiSector] = []
+		self.blocks: list[bytes] = []
+		self.modules: list[dict] | None = None
+		self.unusedBytes: bytes | None = None
 		
 		# For now, I'm not supporting interleaving.
 		assert self.interleaveRatio == [0, 0], "Interleave not supported yet"
@@ -327,7 +327,7 @@ class CdiFileSystem:
 		self._firstIndex = CdiFileSystem.absoluteTimeToIndex(firstSector.minute, firstSector.second, firstSector.frame)
 		
 		# Disk label starts at 2s 16f and continues until a termination record.
-		diskLabelSectors: List[CdiSector] = []
+		diskLabelSectors: list[CdiSector] = []
 		i = self.getSectorIndex(0, 2, 16)
 		currentSector = self.sectors[i]
 		while not currentSector.isEof:
@@ -344,7 +344,7 @@ class CdiFileSystem:
 		rootDirSector = self.sectors[self.volume.pathTableAddress + 1]
 		self.rootDir = CdiDirectory(rootDirSector)
 	
-		self.files: Dict[str, CdiFile] = {}
+		self.files: list[str, CdiFile] = {}
 		file: CdiFile
 		for file in tqdm(self.rootDir.fileDescriptors, desc="building files"):
 			self.files[file.name] = file
@@ -385,7 +385,7 @@ class CdiFileSystem:
 			t.update(1)
 		
 		# Parse all the sectors.
-		self.sectors: List[CdiSector] = []
+		self.sectors: list[CdiSector] = []
 		for sector in tqdm(metadata["sectors"], desc = "building sectors"):
 			rawData = blob[sector["dataOffset"]:sector["dataOffset"] + sector["dataLength"]]
 			self.sectors.append(CdiSector(sector, rawData))
@@ -393,7 +393,7 @@ class CdiFileSystem:
 	def _identifyModules(self):
 		self.modules = {}
 		
-		duplicateNames: List[str] = []
+		duplicateNames: list[str] = []
 		
 		for f in tqdm(self.files, desc = "searching files for modules"):
 			if not f[:4] == "cdi_":

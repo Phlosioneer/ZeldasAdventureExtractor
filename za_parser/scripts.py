@@ -1,12 +1,17 @@
 
+from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, Type, Union, Callable, List, Tuple, Optional
+from typing import TYPE_CHECKING, Type, Union, Callable
 
+from .basic_types import Coords
+from .struct_stream import StructStream
 from .resource_tree import ResourceTree, ResourceTreeNode
-from .constants import SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP
+from .constants import BOSS_COMMAND_PARAM_NAMES, SPELL_LOOKUP, TREASURE_LOOKUP, DIRECTION_LOOKUP, BossCommandType
 
+if TYPE_CHECKING:
+    from .actor import ActorDescription
 
-OPCODE_LOOKUP: Dict[int, Union[
+OPCODE_LOOKUP: dict[int, Union[
     # Formatted string. Expects `s.format(index, parameter, friendlyIndex)`
     # where friendlyIndex is a nice name for the offset into `save`.
     str,
@@ -14,9 +19,9 @@ OPCODE_LOOKUP: Dict[int, Union[
     # String-generating function. Expects `f(index, parameter, friendlyIndex)`
     Callable[[int, int, int], str],
 
-    # List of options, evaluated in order until the callable returns True
+    # list of options, evaluated in order until the callable returns True
     # or the callable is None. Expects `f(index, parameter)`
-    List[Tuple[Optional[Callable[[int, int], bool]], Union[
+    list[tuple[Callable[[int, int], bool] | None, Union[
         # Formatted string, as above
         str,
 
@@ -292,7 +297,7 @@ class ScriptCondition:
         return "ScriptCondition({})".format(self.pretty)
 
 class ScriptSet:
-    scripts: Dict[Enum, List[Script]]
+    scripts: dict[Enum, list[Script]]
 
     def __init__(self, tree: ResourceTree, typeNameEnum: Type[Enum]):
         self.scripts = {}
@@ -304,7 +309,7 @@ class ScriptSet:
             if len(triggerScripts) > 0:
                 self.scripts[kind] = triggerScripts
 
-    def _parseScriptPseudoArray(self, root: ResourceTree) -> List[ScriptAction]:
+    def _parseScriptPseudoArray(self, root: ResourceTree) -> list[ScriptAction]:
         assert isinstance(root, ResourceTreeNode)
         assert len(root.children) % 3 == 0
         scripts: list[Script] = []
@@ -323,7 +328,7 @@ class ScriptSet:
     def isEmpty(self) -> bool:
         return len(self.scripts) == 0
     
-    def prettyPrint(self, className: Optional[str] = None, indent: int = 0) -> str:
+    def prettyPrint(self, className: str | None = None, indent: int = 0) -> str:
         ret = ""
         if className != None:
             ret = "{}class {}:\n".format("\t" * indent, className)
@@ -347,8 +352,178 @@ class ScriptSet:
                 ret += "{}\n".format("\t" * (indent + 1))
         return ret
     
-    def _writeStatements(statements: List[ScriptAction], indent: int) -> str:
+    def _writeStatements(statements: list[ScriptAction], indent: int) -> str:
         ret = ""
         for statement in statements:
             ret += "{}{}\n".format("\t" * indent, statement.pretty)
         return ret
+
+
+class BossCommand:
+    name: BossCommandType
+    paramHigh: int
+    paramLow: int
+    namedParams: dict[str, int | bool]
+
+    def __init__(self, stream: StructStream):
+        self.namedParams = {}
+
+        unused, command, self.paramHigh, self.paramLow = stream.fork().take("BBBB")
+        self.paramLow -= 0x80
+        self.paramHigh -= 0x80
+
+        assert unused == 0, unused
+        if command == 4 and self.paramHigh == 0:
+            self.name = BossCommandType.RUN_ANIMATION_FOR_DURATION
+        elif command == 4:
+            self.name = BossCommandType.RUN_ENEMY_AI_FOR_STEPS
+        else:
+            self.name = BossCommandType(command)
+
+        if self.name in BOSS_COMMAND_PARAM_NAMES:
+            lowName, highName, shouldDouble = BOSS_COMMAND_PARAM_NAMES[self.name]
+        else:
+            lowName = None
+            highName = None
+            shouldDouble = False
+        
+        if lowName:
+            if shouldDouble:
+                self.namedParams[lowName] = self.paramLow * 2
+            else:
+                self.namedParams[lowName] = self.paramLow
+        elif self.paramLow != 0:
+            self.namedParams["unusedLowByte"] = self.paramLow
+        
+        if highName:
+            if shouldDouble:
+                self.namedParams[highName] = self.paramHigh * 2
+            else:
+                self.namedParams[highName] = self.paramHigh
+        elif self.paramHigh != 0 and self.name != BossCommandType.RUN_ENEMY_AI_FOR_STEPS:
+            self.namedParams["unusedHighByte"] = self.paramHigh
+        elif self.paramHigh != 0 and self.paramHigh != 1:
+            # Special name for RUN_ENEMY_AI because the value is *used*, it's just
+            # not an expected value.
+            self.namedParams["unusualHighByte"] = self.paramHigh
+
+    def __repr__(self) -> str:
+        params = ", ".join(map(lambda entry: f"{entry[0]}={entry[1]}", self.namedParams.items()))
+        return f"BossCommand({self.name}, {params})"
+
+    def toPseudocode(self) -> str:
+        params = ", ".join(map(lambda entry: f"{entry[0]}={entry[1]}", self.namedParams.items()))
+        return f"{self.name}({params})"
+
+
+class Attack:
+    """
+    The sprites and metadata to define an attack, its projectile actors, and
+    how they're animated.
+    """
+    # The item/inventory ID for the weapon/spell.
+    id: int
+    # The name of the weapon/spell. This list is manual, the names aren't in
+    # the raw data.
+    name: str
+    # The actor description for the projectile.
+    desc: "ActorDescription"
+    # The commands that spawn the projectiles and animate them. We still don't
+    # know what the commands do, exactly.
+    commands: list[int]
+    # Weapons can share metadata with other weapons. This contains the "parent"
+    # or original weapon's name.
+    sharedWithZeldaWeapon: str | None
+
+    def __init__(self, desc: "ActorDescription", id: int, commands: list[int], sharedWithZeldaWeapon: str | None = None):
+        self.id = id
+        self.name = SPELL_LOOKUP[id]
+        self.desc = desc
+        self.commands = commands
+        self.sharedWithZeldaWeapon = sharedWithZeldaWeapon
+
+class BossData:
+    commands: list[BossCommand]
+    weapon: Attack
+    startPosition: Coords | None
+    loopStartIndex: int | None
+    _startPositionCommand: BossCommand | None
+
+    def __init__(self, subfile: ResourceTreeNode, boss: "ActorDescription", projectile: "ActorDescription"):
+        assert "kp_init" in subfile.children
+        assert "wp_cmds" in subfile.children
+        self.commands = list(map(BossCommand, subfile.children["kp_init"].elements))
+
+        self.startPosition = None
+        self.loopStartIndex = None
+        self._startPositionCommand = None
+
+        assert self.commands[0].name == BossCommandType.ADVANCE_TO_NEXT_ACTOR
+        assert self.commands[-1].name == BossCommandType.LOOP
+        for i in range(1, len(self.commands) - 1):
+            command = self.commands[i]
+            assert command.name != BossCommandType.ADVANCE_TO_NEXT_ACTOR
+            assert command.name != BossCommandType.LOOP
+            if command.name == BossCommandType.SET_START_POSITION:
+                assert self.startPosition == None
+                self.startPosition = Coords(command.namedParams["x"], command.namedParams["y"])
+                self._startPositionCommand = command
+            elif command.name == BossCommandType.SET_LOOP_START_INDEX:
+                #assert self.loopStartIndex == None
+                self.loopStartIndex = i + 1
+        
+        # TODO: Parse weapon
+    
+    def toPseudocode(self) -> str:
+        code = "@AllFunctionsEndTheFrame\ndef bossAI():\n"
+        if self._startPositionCommand != None:
+            x = self._startPositionCommand.namedParams["x"]
+            y = self._startPositionCommand.namedParams["y"]
+            code += f"\tactor.position.x = {x}\n"
+            code += f"\tactor.position.y = {y}\n"
+        
+        if self.loopStartIndex != None:
+            loop = self.commands[self.loopStartIndex:]
+        else:
+            loop = self.commands
+        
+        importList = {str(command.name) for command in loop if command.name != BossCommandType.LOOP}
+        importList.add("wasteOneFrame")
+        importList.add("AllFunctionsEndTheFrame")
+        importList.add("actor")
+        importList = list(importList)
+        imports = ""
+        while len(importList) > 0:
+            imports += "from scripts.ai import " + ", ".join(importList[:5]) + "\n"
+            importList = importList[5:]
+
+        code += "\twhile True:\n"
+        for command in loop:
+            if command.name == BossCommandType.LOOP:
+                currentLine = "wasteOneFrame() # It takes one frame to reset the loop counter."
+            elif command.name in [BossCommandType.SET_START_POSITION, BossCommandType.ADVANCE_TO_NEXT_ACTOR, BossCommandType.SET_LOOP_START_INDEX]:
+                currentLine = f"wasteOneFrame() # Technically this is \"{command.toPseudocode()}\" but the command is skipped" \
+                    + " inside the loop. It's only used by init code before any frames happen."
+            else:
+                currentLine = command.toPseudocode()
+
+                if command.name == BossCommandType.RUN_ANIMATION_FOR_DURATION:
+                    currentLine += " # Boss doesn't move during animation."
+                elif "unusualHighByte" in command.namedParams:
+                    currentLine += " # unusualHighByte: The code only checks for zero or nonzero. This script considers anything"\
+                        + " that isn't 0 or 1 (i.e. true or false) to be \"unusual\"."
+            code += f"\t\t{currentLine}\n"
+
+        return imports + "\n" + code
+
+
+@dataclass
+class AnimationCommand:
+    coords: Coords
+    command: str
+
+    def __repr__(self):
+        if self.command == "nop":
+            return repr(self.coords)
+        else:
+            return "{{{}, then {}}}".format(self.coords, self.command)
